@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>우리의 장소 아카이브 - Pilot v0.1</title>
+<title>우리의 장소 아카이브 - v0.2-A</title>
 <style>
 *{box-sizing:border-box} body{margin:0;font-family:Arial,"Noto Sans KR",sans-serif;background:#f6f7f9;color:#20242b}
 button,input,select{font:inherit} button{cursor:pointer;border:0}
@@ -462,6 +462,66 @@ select{padding:12px 14px;border:1px solid #ddd;border-radius:11px;background:#ff
   max-width:58px;
   max-height:58px;
   flex:none;
+}
+
+/* 2차-A: 상세페이지 팝업 */
+#detailView.detail-modal-open{
+  position:fixed !important;
+  inset:0 !important;
+  z-index:5000 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100vw !important;
+  height:100dvh !important;
+  max-height:none !important;
+  overflow:auto !important;
+  box-sizing:border-box !important;
+  padding:32px !important;
+  background:rgba(20,24,32,.34) !important;
+  -webkit-overflow-scrolling:touch;
+}
+#detailView.detail-modal-open .detail-modal-card{
+  width:min(680px,calc(100vw - 64px));
+  max-height:calc(100dvh - 64px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  box-sizing:border-box;
+  background:#fff;
+  border:1px solid #e3e6ef;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 24px 70px rgba(15,23,42,.20);
+  overscroll-behavior:contain;
+  flex-shrink:0;
+}
+#detailView.detail-modal-open .detail-head{position:relative;top:auto;z-index:auto}
+#detailView.detail-modal-open .back{position:relative;align-self:flex-start;margin-bottom:16px}
+#detailView.detail-modal-open .memo-display{padding-left:0 !important;margin-left:0 !important;text-indent:0 !important}
+/* 방문 기록/장소 편집 팝업은 상세 팝업보다 위에 표시 */
+#visitModal{z-index:8000 !important}
+#editModal{z-index:8100 !important}
+@media(min-width:761px){
+  /* 데스크톱에서는 앱을 브라우저 화면에 억지로 가두지 않음 */
+  .app{
+    height:auto;
+    max-height:none;
+    min-height:760px;
+  }
+  #main{min-height:560px}
+}
+@media(max-width:760px){
+  #detailView.detail-modal-open{padding:12px !important}
+  #detailView.detail-modal-open .detail-modal-card{
+    width:min(680px,calc(100vw - 24px));
+    max-height:calc(100dvh - 24px);
+    padding:18px;
+    border-radius:18px;
+  }
+  #detailView.detail-modal-open .detail-head{padding:0;gap:12px}
+  #detailView.detail-modal-open .detail-title h1{font-size:22px;line-height:1.3;word-break:keep-all}
+  #detailView.detail-modal-open .detail-head .hero{width:96px !important;height:96px !important;min-width:96px !important}
+  #detailView.detail-modal-open .detail-actions{flex-shrink:0}
 }
 </style>
 <script>
@@ -3082,11 +3142,52 @@ a:hover{
   src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=gqghgf0ly5&submodules=geocoder">
 </script>
 
+<style>
+/* 2차-A 모바일/레이아웃 개선 */
+html,body{height:100%;}
+body{overflow-x:hidden;}
+.app{height:calc(100vh - 48px);max-height:calc(100vh - 48px);min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+#main{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+.content{flex:1 1 0;min-height:0;max-height:none;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
+#listView,#mapView,#detailView{min-height:0;}
+.app-version{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:#eef2ff;color:#5967d9;font-size:10px;font-weight:700;vertical-align:middle}
+.pagination{display:flex;justify-content:center;align-items:center;gap:6px;padding:18px 0 4px}
+.pagination button{min-width:34px;height:34px;padding:0 9px;border:1px solid #e2e5ee;border-radius:9px;background:#fff;color:#596273;font-size:12px;font-weight:700}
+.pagination button.active{background:#5967d9;color:#fff;border-color:#5967d9}
+.pagination button:disabled{opacity:.4;cursor:default}
+#accountModal .actions{flex-wrap:wrap}
+@media(max-width:760px){
+  body{overflow-x:hidden;}
+  .app{width:100%;height:100dvh;max-height:100dvh;margin:0;border-radius:0;overflow:hidden;}
+  #main{min-height:0;}
+  header{flex-wrap:wrap;align-items:flex-start}
+  header>div:first-child{min-width:0}
+  header>div:last-child{width:100%;display:flex!important;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:6px!important}
+  header .space-current{max-width:110px}
+  header .auth-secondary,header .add{font-size:12px}
+  .tabs{padding:10px 14px}
+  .toolbar{padding:10px 14px 10px}
+  .chips{padding:0 14px 12px;overflow-x:auto;flex-wrap:nowrap;white-space:nowrap}
+  .chip{flex:none}
+  .content{padding:0 14px 18px}
+  .list{grid-template-columns:1fr;gap:10px}
+  .card{min-width:0}
+  .modal{width:calc(100% - 20px);max-width:none;padding:18px}
+  #accountModal .actions{justify-content:flex-end}
+  #accountModal .actions button{flex:1 1 calc(50% - 8px);min-width:120px}
+  .edit-card{width:calc(100% - 20px);max-height:88dvh;padding:18px}
+  #visitModal .actions{flex-wrap:wrap}
+  #visitModal .actions button{flex:1 1 120px}
+  .map{height:calc(100dvh - 250px);min-height:360px}
+  .detail-head{position:relative;top:auto;z-index:auto}
+  #listView .pagination{padding-bottom:8px}
+}
+</style>
 </head>
 <body class='auth-locked'>
 <div class="auth-screen" id="authScreen">
   <div class="auth-card">
-    <div class="auth-logo">Our Place</div>
+    <div class="auth-logo">Our Place <span class="app-version">v0.2-A</span></div>
     <div class="auth-sub">함께 발견하고, 함께 경험한 장소를 기록해요.</div>
     <div id="supabaseStatus" style="font-size:12px;color:#777;margin-bottom:14px">Supabase 연결 중...</div>
     <label for="authEmail">이메일</label>
@@ -3255,12 +3356,16 @@ a:hover{
     놀거리
   </button>
 
+  <button class="chip" id="goPlacesChip" data-go-places="false" onclick="toggleGoPlaces(this)">
+    가볼 곳
+  </button>
+
 </div>
 
 
 
 <div class="content">
-<div id="listView"><div class="list" id="cards"></div></div>
+<div id="listView"><div class="list" id="cards"></div><div id="pagination" class="pagination"></div></div>
 <div id="mapView" style="display:none"><div class="map" id="mapCanvas">
 
   <div id="naverMap"></div>
@@ -3304,11 +3409,15 @@ a:hover{
 </div></div>
 <script>
 let cat='', view='list';
+let goPlacesOnly=false;
+let currentPage=1;
+const PLACES_PER_PAGE=20;
+const userNameMap={};
 window.currentSpaceId=null; window.currentSpace=null;
 let places=[];
 let pendingPlaceLocation=null;
 let locationPickerMode=false;
-function filtered(){let q=document.getElementById('search').value.trim().toLowerCase(),r=document.getElementById('region').value;return places.filter(p=>(!q||p.name.toLowerCase().includes(q))&&(!r||p.region===r)&&(!cat||p.cat===cat))}
+function filtered(){let q=(document.getElementById('search')?.value||'').trim().toLowerCase(),r=document.getElementById('region')?.value||'';return places.filter(p=>(!q||p.name.toLowerCase().includes(q))&&(!r||p.region===r)&&(!cat||p.cat===cat)&&(!goPlacesOnly||!(Number(p.visits)||0)))}
 let detailReturnView='list';
 let detailReturnMapState=null;
 let addReturnView='list';
@@ -3473,94 +3582,55 @@ function render(){
   if(!cards) return;
 
   const data=filtered();
+  const totalPages=Math.max(1,Math.ceil(data.length/PLACES_PER_PAGE));
+  if(currentPage>totalPages) currentPage=totalPages;
+  const start=(currentPage-1)*PLACES_PER_PAGE;
+  const pageData=data.slice(start,start+PLACES_PER_PAGE);
 
-  cards.innerHTML=data.map(p=>`
-    <div
-      class="card place-card"
-      data-place-id="${p.id}"
-      data-place-cat="${escapeHtml(p.cat||'')}"
-    >
-
-      <div class="thumb place-thumb ${
-  p.cat === '카페'
-    ? 'cat-cafe'
-    : p.cat === '식당'
-      ? 'cat-food'
-      : p.cat === '놀거리'
-        ? 'cat-fun'
-        : ''
-}">
-
-  <div class="place-icon-box">
-    ${getPlaceCategoryIcon(p.cat)}
-  </div>
-
-</div>
-
-      <div class="info">
-
-        <div class="name">
-          ${escapeHtml(p.name)}
-        </div>
-
-        <div class="meta place-category">
-          ${escapeHtml(p.region||'')} · ${escapeHtml(p.cat||'')}
-        </div>
-
-        <div class="place-visit">
-
-          <svg
-            class="ui-icon"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <circle
-              cx="12"
-              cy="8"
-              r="3"
-            ></circle>
-
-            <path
-              d="M5 21c.5-4 2.8-6 7-6s6.5 2 7 6"
-            ></path>
-
-          </svg>
-
-          <span>준범</span>
-
-          <span class="visit-dot">·</span>
-
-          <span>
-            방문 ${p.visits||0}회
-          </span>
-
-        </div>
-
-        ${p.note ? `
-          <div class="note">
-            ${escapeHtml(p.note)}
-          </div>
-        ` : ''}
-
+  cards.innerHTML=pageData.map(p=>`
+    <div class="card place-card" data-place-id="${p.id}" data-place-cat="${escapeHtml(p.cat||'')}">
+      <div class="thumb place-thumb ${p.cat==='카페'?'cat-cafe':p.cat==='식당'?'cat-food':p.cat==='놀거리'?'cat-fun':''}">
+        <div class="place-icon-box">${getPlaceCategoryIcon(p.cat)}</div>
       </div>
-
+      <div class="info">
+        <div class="name">${escapeHtml(p.name)}</div>
+        <div class="meta place-category">${escapeHtml(p.region||'지역 미지정')} · ${escapeHtml(p.cat||'기타')}</div>
+        <div class="place-visit">
+          <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3"></circle><path d="M5 21c.5-4 2.8-6 7-6s6.5 2 7 6"></path></svg>
+          <span>${escapeHtml(p.creatorName||'이름 미지정')}</span><span class="visit-dot">·</span><span>방문 ${p.visits||0}회</span>
+        </div>
+        ${p.note?`<div class="note">${escapeHtml(p.note)}</div>`:''}
+      </div>
     </div>
   `).join('') || '<div class="empty">조건에 맞는 장소가 없어요.</div>';
 
   cards.querySelectorAll('.place-card').forEach(card=>{
-
-    card.addEventListener('click',function(e){
-
-      e.preventDefault();
-      e.stopPropagation();
-
-      openDetail(card.dataset.placeId);
-
-    });
-
+    card.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();openDetail(card.dataset.placeId);});
   });
 
+  renderPagination(totalPages);
 }
+
+function renderPagination(totalPages){
+  const host=document.getElementById('pagination');
+  if(!host) return;
+  if(totalPages<=1){host.innerHTML='';return;}
+  let html='';
+  html+=`<button type="button" ${currentPage===1?'disabled':''} onclick="changePage(${currentPage-1})">이전</button>`;
+  const from=Math.max(1,currentPage-2), to=Math.min(totalPages,currentPage+2);
+  for(let i=from;i<=to;i++) html+=`<button type="button" class="${i===currentPage?'active':''}" onclick="changePage(${i})">${i}</button>`;
+  html+=`<button type="button" ${currentPage===totalPages?'disabled':''} onclick="changePage(${currentPage+1})">다음</button>`;
+  host.innerHTML=html;
+}
+function changePage(page){currentPage=Math.max(1,page);render();const content=document.querySelector('.content');if(content)content.scrollTop=0;}
+function toggleGoPlaces(btn){
+  goPlacesOnly=!goPlacesOnly;
+  if(btn) btn.classList.toggle('active',goPlacesOnly);
+  currentPage=1;
+  render();
+}
+function setCatSafe(catValue){cat=catValue;currentPage=1;render();}
+
 function getPlaceCategoryIcon(cat){
 
   /* =========================
@@ -3977,7 +4047,10 @@ function showView(v){
 
   if(list) list.style.display=v==='list'?'block':'none';
   if(map) map.style.display=v==='map'?'block':'none';
-  if(detail) detail.style.display='none';
+  if(detail){
+    detail.style.display='none';
+    detail.classList.remove('detail-modal-open');
+  }
 
   const lt=document.getElementById('listTab');
   const mt=document.getElementById('mapTab');
@@ -4028,6 +4101,7 @@ function openEditPlace(id){
   document.getElementById('editId').value=p.id;
   document.getElementById('editName').value=p.name||'';
   document.getElementById('editCat').value=p.cat||'';
+  document.getElementById('editUrl').value=p.url||'';
   document.getElementById('editMemo').value=p.note||'';
 
   modal.style.display='flex';
@@ -4045,6 +4119,7 @@ async function saveEditedPlace(){
 
   const name=document.getElementById('editName').value.trim()||p.name;
   const category=document.getElementById('editCat').value;
+  const url=document.getElementById('editUrl').value.trim();
   const memo=document.getElementById('editMemo').value.trim();
 
   const {data,error}=await supabaseClient
@@ -4052,6 +4127,7 @@ async function saveEditedPlace(){
     .update({
       name:name,
       category:category,
+      naver_map_url:url,
       memo:memo
     })
     .eq('id',id)
@@ -4106,7 +4182,8 @@ async function openDetail(id){
   if(map) map.style.display='none';
   if(!detail) return;
 
-  detail.style.display='block';
+  detail.style.display='flex';
+  detail.classList.add('detail-modal-open');
 
   // 현재 장소의 방문 기록을 Supabase에서 조회
   const {data:visitRecords,error:visitError}=await supabaseClient
@@ -4124,6 +4201,11 @@ async function openDetail(id){
   }
 
   const visits=visitRecords||[];
+  const visitCreatorIds=[...new Set(visits.map(v=>v.created_by).filter(Boolean))];
+  if(visitCreatorIds.length){
+    const {data:visitUsers,error:visitUserError}=await supabaseClient.from('users').select('id,name').in('id',visitCreatorIds);
+    if(!visitUserError)(visitUsers||[]).forEach(u=>{userNameMap[u.id]=u.name||'이름 미지정';});
+  }
   const visitCount=visits.length;
 
   const visitHtml=visits.length
@@ -4154,6 +4236,7 @@ async function openDetail(id){
     `).join('')
   : '<div class="visit-review">아직 작성한 방문 기록이 없습니다.</div>';
   detail.innerHTML=`
+    <div class="detail-modal-card">
     <button class="back" id="detailBack">
       ← ${detailReturnView==='map'?'지도':'리스트'}로 돌아가기
     </button>
@@ -4168,7 +4251,7 @@ async function openDetail(id){
     <div class="meta">
       ${escapeHtml(p.region||'지역 미지정')} ·
       ${escapeHtml(p.cat||'기타')} ·
-      준범
+      ${escapeHtml(p.creatorName||'이름 미지정')}
     </div>
   </div>
 
@@ -4231,10 +4314,11 @@ async function openDetail(id){
 
       </div>
     </div>
+    </div>
   `;
 console.log('상세페이지 HTML 생성 완료:', document.getElementById('detailView'));
   document.getElementById('detailBack').onclick=()=>{
-    showView(detailReturnView);
+    closeDetail();
   };
 
   document.getElementById('editPlaceBtn').onclick=()=>{
@@ -4289,42 +4373,38 @@ const ICONS = {
     </svg>`
 };
 let currentVisitPlaceId = null;
+let currentVisitEditId = null;
 
 function addVisitRecord(placeId){
 
   const p=places.find(x=>String(x.id)===String(placeId));
-
   if(!p) return;
 
   currentVisitPlaceId=p.id;
+  currentVisitEditId=null;
 
   const modal=document.getElementById('visitModal');
+  const title=document.querySelector('#visitModal h2');
+  const saveBtn=document.getElementById('visitSaveBtn');
   const dateInput=document.getElementById('visitDateInput');
   const reviewInput=document.getElementById('visitReviewInput');
 
-  if(!modal || !dateInput || !reviewInput){
-    console.error('Visit modal elements not found');
-    return;
-  }
+  if(!modal || !dateInput || !reviewInput) return;
 
+  if(title) title.textContent='방문 기록 추가';
+  if(saveBtn) saveBtn.textContent='저장';
   dateInput.value=new Date().toISOString().slice(0,10);
   reviewInput.value='';
-
   modal.style.display='flex';
 
-  setTimeout(()=>{
-    dateInput.focus();
-  },50);
+  setTimeout(()=>dateInput.focus(),50);
 }
+
 function closeVisitModal(){
-
   const modal=document.getElementById('visitModal');
-
-  if(modal){
-    modal.style.display='none';
-  }
-
+  if(modal) modal.style.display='none';
   currentVisitPlaceId=null;
+  currentVisitEditId=null;
 }
 
 async function saveVisitRecord(){
@@ -4333,17 +4413,32 @@ async function saveVisitRecord(){
 
   const dateInput=document.getElementById('visitDateInput');
   const reviewInput=document.getElementById('visitReviewInput');
-
   const visitDate=dateInput?.value;
   const review=reviewInput?.value.trim()||null;
 
-  if(!visitDate){
-    alert('방문 날짜를 입력해주세요.');
+  if(!visitDate){ alert('방문 날짜를 입력해주세요.'); return; }
+
+  if(currentVisitEditId){
+    const {data:updatedData,error:updateError}=await supabaseClient
+      .from('visit_records')
+      .update({visit_date:visitDate,review:review})
+      .eq('id',currentVisitEditId)
+      .select('id,place_id,visit_date,review')
+      .single();
+
+    if(updateError){
+      alert('방문 기록 수정 실패: '+updateError.message);
+      console.error('Visit record update error:',updateError);
+      return;
+    }
+
+    closeVisitModal();
+    await loadPlacesForCurrentSpace();
+    await openDetail(updatedData.place_id);
     return;
   }
 
   const {data:userData,error:userError}=await supabaseClient.auth.getUser();
-
   if(userError || !userData?.user){
     alert('로그인 정보를 확인할 수 없습니다.');
     console.error('Auth user error:',userError);
@@ -4352,12 +4447,7 @@ async function saveVisitRecord(){
 
   const {data,error}=await supabaseClient
     .from('visit_records')
-    .insert({
-      place_id:currentVisitPlaceId,
-      created_by:userData.user.id,
-      visit_date:visitDate,
-      review:review
-    })
+    .insert({place_id:currentVisitPlaceId,created_by:userData.user.id,visit_date:visitDate,review:review})
     .select('id,place_id,created_by,visit_date,review,created_at,updated_at')
     .single();
 
@@ -4367,19 +4457,11 @@ async function saveVisitRecord(){
     return;
   }
 
-  console.log('Visit record inserted:',data);
-
-  const modal=document.getElementById('visitModal');
-
-  if(modal){
-    modal.style.display='none';
-  }
-
-  currentVisitPlaceId=null;
-
+  closeVisitModal();
   await loadPlacesForCurrentSpace();
   await openDetail(data.place_id);
 }
+
 async function deletePlace(id){
   if(!window.currentSpaceId){
     alert('현재 Space를 확인할 수 없습니다.');
@@ -4419,8 +4501,14 @@ async function deletePlace(id){
   if(typeof syncMapPins==='function') syncMapPins();
 }
 function closeDetail(){
+  const detail=document.getElementById('detailView');
+  if(detail){
+    detail.style.display='none';
+    detail.classList.remove('detail-modal-open');
+  }
   showView(detailReturnView||'list');
 }
+
 async function editVisitRecord(visitId){
 
   const {data,error}=await supabaseClient
@@ -4435,40 +4523,26 @@ async function editVisitRecord(visitId){
     return;
   }
 
-  const visitDate=prompt(
-    '방문 날짜를 입력해주세요.',
-    data.visit_date||''
-  );
+  currentVisitPlaceId=data.place_id;
+  currentVisitEditId=data.id;
 
-  if(visitDate===null) return;
+  const modal=document.getElementById('visitModal');
+  const title=document.querySelector('#visitModal h2');
+  const saveBtn=document.getElementById('visitSaveBtn');
+  const dateInput=document.getElementById('visitDateInput');
+  const reviewInput=document.getElementById('visitReviewInput');
 
-  const review=prompt(
-    '방문 후기를 입력해주세요.',
-    data.review||''
-  );
+  if(!modal || !dateInput || !reviewInput) return;
 
-  if(review===null) return;
+  if(title) title.textContent='방문 기록 편집';
+  if(saveBtn) saveBtn.textContent='수정 저장';
+  dateInput.value=data.visit_date||'';
+  reviewInput.value=data.review||'';
+  modal.style.display='flex';
 
-  const {data:updatedData,error:updateError}=await supabaseClient
-    .from('visit_records')
-    .update({
-      visit_date:visitDate,
-      review:review.trim()||null
-    })
-    .eq('id',visitId)
-    .select('id,place_id,visit_date,review')
-    .single();
-
-  if(updateError){
-    alert('방문 기록 수정 실패: '+updateError.message);
-    console.error('Visit record update error:',updateError);
-    return;
-  }
-
-  console.log('Visit record updated:',updatedData);
-
-  await openDetail(updatedData.place_id);
+  setTimeout(()=>dateInput.focus(),50);
 }
+
 async function deleteVisitRecord(visitId){
 
   const ok=confirm('이 방문 기록을 삭제할까요?');
@@ -4723,6 +4797,32 @@ function extractNaverSearchText(url){
   return '';
 }
 
+function extractRegionFromGeocodeResult(result){
+  const elements=result?.addressElements||[];
+  const sigungu=elements.find(e=>(e.types||[]).includes('SIGUGUN'));
+  const name=sigungu?.longName||sigungu?.shortName||'';
+  if(name) return name.endsWith('구')?name:name;
+  const text=result?.roadAddress||result?.jibunAddress||result?.address||'';
+  const match=text.match(/([가-힣]+구)(?:\s|$)/);
+  return match?match[1]:'';
+}
+function extractRegionFromReverseResult(result){
+  return extractRegionFromGeocodeResult(result);
+}
+
+function reverseGeocodeRegion(latitude,longitude){
+  return new Promise(resolve=>{
+    if(typeof naver==='undefined'||!naver.maps?.Service){resolve('');return;}
+    naver.maps.Service.reverseGeocode({coords:new naver.maps.LatLng(Number(latitude),Number(longitude)),orders:'roadaddr,addr'},(statusCode,response)=>{
+      const addresses=response?.v2?.results||[];
+      const result=addresses[0]||{};
+      const elements=result.region?.area2?.name ? null : null;
+      const area2=result.region?.area2?.name||'';
+      resolve(area2);
+    });
+  });
+}
+
 function checkLocationFromAddress(){
 
   const address=(document.getElementById('newAddress')?.value||'').trim();
@@ -4768,7 +4868,7 @@ function checkLocationFromAddress(){
         return;
       }
 
-      window.pendingPlaceLocation={latitude,longitude};
+      window.pendingPlaceLocation={latitude,longitude,region:extractRegionFromGeocodeResult(result)};
 
       status.textContent=
         `✓ 위치 확인 완료 (${latitude.toFixed(6)}, ${longitude.toFixed(6)})`;
@@ -4889,6 +4989,12 @@ async function savePlace(){
   }
 
   const location=window.pendingPlaceLocation||null;
+  const address=(document.getElementById('newAddress')?.value||'').trim();
+  let region=location?.region||'';
+  if(!region && address){
+    const match=address.match(/([가-힣]+구)(?:\s|$)/);
+    region=match?match[1]:'';
+  }
 
   const {data,error}=await supabaseClient
     .from('places')
@@ -4898,6 +5004,7 @@ async function savePlace(){
       category:c,
       latitude:location?.latitude ?? null,
       longitude:location?.longitude ?? null,
+      region:region||null,
       naver_map_url:url,
       memo:memo,
       created_by:userData.user.id
@@ -4962,6 +5069,12 @@ async function loadPlacesForCurrentSpace(){
   }
 
   const placeData=data||[];
+
+  const creatorIds=[...new Set(placeData.map(p=>p.created_by).filter(Boolean))];
+  if(creatorIds.length){
+    const {data:users,error:userError}=await supabaseClient.from('users').select('id,name').in('id',creatorIds);
+    if(!userError)(users||[]).forEach(u=>{userNameMap[u.id]=u.name||'이름 미지정';});
+  }
 
   // 현재 Space의 장소들에 대한 방문 기록 조회
   const placeIds=placeData.map(p=>p.id);
@@ -5441,6 +5554,7 @@ updateCategoryChipIcons();
     <label>장소 이름</label><input id="editName">
     <label>카테고리</label>
     <select id="editCat"><option>카페</option><option>식당</option><option>놀거리</option></select>
+    <label>네이버 지도 URL</label><input id="editUrl" placeholder="네이버 지도에서 공유한 URL">
     <label>우리 메모</label><textarea id="editMemo" rows="5" placeholder="예약기간, 특이사항 등을 적어주세요."></textarea>
     
     <div class="edit-actions"><button onclick="closeEditPlace()">취소</button><button class="primary" onclick="saveEditedPlace()">저장</button></div>
