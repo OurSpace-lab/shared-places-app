@@ -523,6 +523,87 @@ select{padding:12px 14px;border:1px solid #ddd;border-radius:11px;background:#ff
   #detailView.detail-modal-open .detail-head .hero{width:96px !important;height:96px !important;min-width:96px !important}
   #detailView.detail-modal-open .detail-actions{flex-shrink:0}
 }
+
+
+/* 2차-C-4: 공유 달력 */
+.c-cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.c-cal-head strong{font-size:15px}
+.c-cal-head button{width:30px;height:30px;border:1px solid #e4e7ee;border-radius:8px;background:#fff;color:#333;font-size:20px;line-height:1}
+.c-cal-week,.c-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.c-cal-week{margin-bottom:4px}
+.c-cal-week span{font-size:11px;text-align:center;color:#777;padding:4px 0}
+.c-cal-cell{min-height:58px;border:1px solid #eef0f4;border-radius:8px;background:#fff;padding:5px 4px;overflow:hidden;cursor:pointer}
+.c-cal-cell.empty{background:#fafafa;padding:5px 4px;text-align:left}
+.c-cal-day{font-size:11px;color:#666;margin-bottom:3px}
+.c-cal-cell.today{border-color:#222}
+.c-cal-event{display:block;width:100%;border:0;border-radius:6px;color:#333;text-align:left;padding:4px 5px;margin-top:3px;font-size:11px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.c-cal-event.cal-pastel-0{background:#fde2e4}
+.c-cal-event.cal-pastel-1{background:#e2f0cb}
+.c-cal-event.cal-pastel-2{background:#dfe7fd}
+.c-cal-event.cal-pastel-3{background:#fce1b4}
+.c-cal-event.cal-pastel-4{background:#e8def8}
+.c-cal-event.cal-pastel-5{background:#d9f0f0}
+.c-cal-event.cal-pastel-6{background:#f7e8c8}
+.c-cal-event.cal-pastel-7{background:#e9e9e9}
+.c-cal-add{display:none}
+.c-cal-modal{position:fixed;inset:0;z-index:9800;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(20,24,32,.32)}
+.c-cal-modal.open{display:flex}
+.c-cal-dialog{width:min(420px,calc(100vw - 36px));background:#fff;border-radius:16px;box-shadow:0 18px 50px rgba(15,23,42,.2);padding:18px}
+.c-cal-dialog h3{margin:0 0 14px;font-size:17px}
+.c-cal-dialog label{display:block;font-size:12px;font-weight:700;margin:10px 0 6px}
+.c-cal-dialog input{width:100%;box-sizing:border-box;height:42px;border:1px solid #dfe3ea;border-radius:9px;padding:0 11px;font-size:14px}
+.c-cal-dialog-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.c-cal-dialog-actions button{height:38px;padding:0 13px;border:0;border-radius:9px;font-weight:700}
+.c-cal-save{background:#20242b;color:#fff}
+.c-cal-cancel{background:#f1f2f4;color:#444}
+.c-cal-delete{margin-right:auto;background:#fff;color:#d33;border:1px solid #f0caca!important}
+.c-cal-detail-date{font-size:12px;color:#777;margin-bottom:8px}
+
+.c-cal-date-events{max-height:220px;overflow-y:auto;margin:4px 0 12px}
+.c-cal-date-event{display:flex;align-items:center;gap:8px;width:100%;box-sizing:border-box;border:1px solid #e7e9ee;border-radius:9px;background:#fff;padding:10px 11px;margin-bottom:7px;text-align:left;font-size:13px;cursor:pointer}
+.c-cal-date-event:last-child{margin-bottom:0}
+.c-cal-date-event:hover{background:#f7f8fa}
+.c-cal-date-empty{font-size:13px;color:#888;padding:8px 0 12px}
+.c-cal-date-add{width:100%;height:40px;border:0;border-radius:9px;background:#f1f2f4;color:#333;font-weight:700;cursor:pointer}
+
+@media(max-width:760px){.c-cal-cell{min-height:54px;padding:4px 3px}.c-cal-event{font-size:10px;padding:4px}.c-cal-add{font-size:9px}}
+
+/* 2차-C-1: 오른쪽 공유 패널 */
+.c-panel-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:9500;width:38px;height:72px;border-radius:12px 0 0 12px;background:#20242b;color:#fff;font-size:20px;box-shadow:0 6px 18px rgba(15,23,42,.16)}
+.c-panel{position:fixed;top:0;right:0;width:min(520px,50vw);height:100dvh;background:#fff;z-index:9400;box-shadow:-12px 0 35px rgba(15,23,42,.14);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column;border-left:1px solid #e5e8f0}
+.c-panel.open{transform:translateX(0)}
+.c-panel-head{height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid #eee;font-weight:800}
+.c-panel-close{width:36px;height:36px;border-radius:10px;background:#f1f2f4;color:#444;font-size:20px}
+.c-panel-body{flex:1;min-height:0;overflow-y:auto;padding:14px}
+.c-panel-section{border:1px solid #e6e9f0;border-radius:14px;margin-bottom:12px;background:#fff;overflow:hidden}
+.c-panel-section:last-child{margin-bottom:0}
+.c-panel-section-title{padding:13px 14px;font-weight:800;border-bottom:1px solid #eee}
+.c-panel-section-content{padding:12px;min-height:90px;max-height:220px;overflow-y:auto;color:#666;font-size:13px;line-height:1.55}
+.c-panel-section.calendar .c-panel-section-content{max-height:none;min-height:260px}
+.c-notification-list{display:flex;flex-direction:column;gap:8px}
+.c-notification-item{display:block;width:100%;text-align:left;padding:10px 11px;border:1px solid #eceef3;border-radius:10px;background:#fafbfc;color:#333;cursor:pointer}
+.c-notification-item:hover{background:#f5f7fb;border-color:#dfe3ec}
+.c-notification-title{font-weight:700;color:#20242b;font-size:13px}
+.c-notification-meta{margin-top:4px;font-size:11px;color:#8a9099}
+.c-notification-empty{color:#999;text-align:center;padding:10px 4px}
+.c-notification-loading{color:#999;text-align:center;padding:10px 4px}
+.c-panel-backdrop{display:none;position:fixed;inset:0;background:rgba(20,24,32,.28);z-index:9300}
+@media(max-width:760px){
+  .c-panel-toggle{right:0;width:40px;height:68px}
+  .c-panel{width:100vw;max-width:none}
+  .c-panel-body{padding:12px}
+  .c-panel-section-content{max-height:190px}
+  .c-panel-section.calendar .c-panel-section-content{min-height:280px}
+  .c-panel-backdrop{display:block;opacity:0;pointer-events:none;transition:opacity .22s ease}
+  .c-panel.open + .c-panel-backdrop{opacity:1;pointer-events:auto}
+}
+
+.c-shared-memo-input{width:100%;min-height:150px;resize:vertical;box-sizing:border-box;border:1px solid #e1e5ec;border-radius:10px;padding:11px 12px;font:inherit;font-size:13px;line-height:1.55;color:#333;background:#fff;outline:none}
+.c-shared-memo-input:focus{border-color:#8da2c7;box-shadow:0 0 0 3px rgba(80,110,160,.08)}
+.c-shared-memo-actions{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.c-shared-memo-status{font-size:11px;color:#8a9099;min-height:16px}
+.c-shared-memo-save{border:0;border-radius:9px;padding:8px 14px;background:#20242b;color:#fff;font-weight:700;cursor:pointer}
+.c-shared-memo-save:disabled{opacity:.55;cursor:default}
 </style>
 <script>
 const SUPABASE_URL = 'https://lzzrnykqbadyozuipntp.supabase.co';
@@ -605,14 +686,41 @@ async function requestAccountDelete(){
   }
 }
 
-function openAccountModal(){
+async function openAccountModal(){
   const m=document.getElementById('accountModal');
+  const input=document.getElementById('accountNameInput');
+  if(input && supabaseClient){
+    const {data:{user}}=await supabaseClient.auth.getUser();
+    input.value=user?.user_metadata?.name||userNameMap[user?.id]||'';
+  }
   if(m)m.style.display='flex';
 }
 function closeAccountModal(){
   const m=document.getElementById('accountModal');
   if(m)m.style.display='none';
 }
+async function saveMyName(){
+  const input=document.getElementById('accountNameInput');
+  const msg=document.getElementById('accountMsg');
+  const name=(input?.value||'').trim();
+  if(!name){if(msg)msg.textContent='이름을 입력해주세요.';return;}
+  if(name.length>30){if(msg)msg.textContent='이름은 30자 이내로 입력해주세요.';return;}
+  const {data:{user},error:userError}=await supabaseClient.auth.getUser();
+  if(userError||!user){if(msg)msg.textContent='로그인 정보를 확인할 수 없습니다.';return;}
+  if(msg)msg.textContent='이름을 저장하는 중...';
+  const {error}=await supabaseClient.from('users').update({name}).eq('id',user.id);
+  if(error){if(msg)msg.textContent='이름 변경 실패: '+error.message;console.error('Name update error:',error);return;}
+  const {error:authError}=await supabaseClient.auth.updateUser({data:{name}});
+  if(authError)console.warn('Auth metadata name update:',authError.message);
+  userNameMap[user.id]=name;
+  if(currentAuthUser) currentAuthUser.user_metadata={...(currentAuthUser.user_metadata||{}),name};
+  if(msg)msg.textContent='이름이 변경되었습니다.';
+  await loadPlacesForCurrentSpace();
+  if(typeof render==='function')render();
+  if(typeof syncMapPins==='function')syncMapPins();
+  if(view==='detail' && window.currentDetailPlaceId) await openDetail(window.currentDetailPlaceId);
+}
+
 function openPasswordChange(){
 
   const modal=document.getElementById('passwordChangeModal');
@@ -841,6 +949,74 @@ function closeSpaceEdit(){
     modal.style.display='none';
 
 }
+async function loadSharedMemo(){
+  const input=document.getElementById('cSharedMemoInput');
+  const status=document.getElementById('cSharedMemoStatus');
+  if(!input) return;
+  if(!supabaseClient || !window.currentSpaceId){
+    input.value='';
+    input.placeholder='Space를 선택하면 공동 메모를 사용할 수 있습니다.';
+    if(status) status.textContent='';
+    return;
+  }
+  input.disabled=true;
+  if(status) status.textContent='불러오는 중...';
+  const {data,error}=await supabaseClient
+    .from('space_shared_memos')
+    .select('content,updated_at,updated_by')
+    .eq('space_id',window.currentSpaceId)
+    .maybeSingle();
+  input.disabled=false;
+  if(error){
+    console.error('공유 메모 조회 실패:',error);
+    if(status) status.textContent='메모를 불러오지 못했습니다.';
+    return;
+  }
+  input.value=data?.content||'';
+  input.placeholder='멤버들과 함께 사용할 메모를 적어주세요.';
+  if(status){
+    status.textContent=data?.updated_at ? '마지막 저장: '+formatSharedMemoTime(data.updated_at) : '아직 저장된 메모가 없습니다.';
+  }
+}
+
+function formatSharedMemoTime(value){
+  const d=new Date(value);
+  if(Number.isNaN(d.getTime())) return '';
+  return d.toLocaleString('ko-KR',{year:'numeric',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+}
+
+async function saveSharedMemo(){
+  const input=document.getElementById('cSharedMemoInput');
+  const button=document.getElementById('cSharedMemoSave');
+  const status=document.getElementById('cSharedMemoStatus');
+  if(!input||!supabaseClient||!window.currentSpaceId) return;
+  const {data:{user},error:userError}=await supabaseClient.auth.getUser();
+  if(userError||!user){
+    if(status) status.textContent='로그인이 필요합니다.';
+    return;
+  }
+  const content=input.value;
+  if(button) button.disabled=true;
+  if(status) status.textContent='저장 중...';
+  const {data,error}=await supabaseClient
+    .from('space_shared_memos')
+    .upsert({
+      space_id:window.currentSpaceId,
+      content,
+      updated_by:user.id,
+      updated_at:new Date().toISOString()
+    },{onConflict:'space_id'})
+    .select('updated_at')
+    .single();
+  if(button) button.disabled=false;
+  if(error){
+    console.error('공유 메모 저장 실패:',error);
+    if(status) status.textContent='저장하지 못했습니다: '+error.message;
+    return;
+  }
+  if(status) status.textContent='저장됨 · '+formatSharedMemoTime(data?.updated_at||new Date().toISOString());
+}
+
 async function selectMySpace(space){
   window.currentSpaceId=space.id;
   window.currentSpace=space;
@@ -874,8 +1050,9 @@ if(editBox) editBox.style.display='block';
     msg.textContent='현재 Space: '+(space.name||'이름 없는 Space');
   }
 
-  // 현재 Space의 장소를 모두 불러온 뒤 화면 갱신
+  // 현재 Space의 장소와 공동 메모를 불러온 뒤 화면 갱신
   await loadPlacesForCurrentSpace();
+  if(typeof loadSharedMemo==='function') await loadSharedMemo();
 
   showView('list');
 
@@ -2424,6 +2601,12 @@ header .add:active{
   color:#5967d9;
 }
 
+.detail .naver-missing{
+  border:1px solid #d9ddf5;
+  cursor:pointer;
+  font-family:inherit;
+}
+
 
 /* 모바일 */
 @media(max-width:760px){
@@ -3183,11 +3366,143 @@ body{overflow-x:hidden;}
   #listView .pagination{padding-bottom:8px}
 }
 </style>
+
+<style>
+/* 2차-A 최종 레이아웃: 1차 배포 스타일 유지 + 모바일만 반응형 */
+html,body{height:auto;min-height:100%;}
+body{overflow-x:hidden;overflow-y:auto;}
+.app{
+  height:auto !important;
+  max-height:none !important;
+  min-height:760px;
+  display:block !important;
+  overflow:hidden;
+}
+#main{
+  height:auto !important;
+  min-height:0 !important;
+  display:block !important;
+  overflow:visible !important;
+}
+.content{
+  height:auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+  flex:none !important;
+  overflow:visible !important;
+  padding-bottom:22px;
+}
+#listView,#mapView,#detailView{min-height:0;}
+
+/* 상세페이지는 1차처럼 화면 전환. 내부 별도 스크롤/큰 그림자 없음 */
+#detailView.detail-modal-open{
+  position:relative !important;
+  inset:auto !important;
+  z-index:auto !important;
+  display:block !important;
+  width:auto !important;
+  height:auto !important;
+  max-height:none !important;
+  overflow:visible !important;
+  padding:0 !important;
+  background:transparent !important;
+}
+#detailView.detail-modal-open .detail-modal-card{
+  width:auto !important;
+  max-width:980px !important;
+  max-height:none !important;
+  overflow:visible !important;
+  margin:0 auto !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+#detailView.detail-modal-open .back{
+  position:relative !important;
+  align-self:auto !important;
+  margin-bottom:14px !important;
+}
+#detailView.detail-modal-open .memo-display{
+  padding-left:0 !important;
+  margin-left:0 !important;
+  text-indent:0 !important;
+}
+
+/* 지도는 1차처럼 콘텐츠 안에서 자연스럽게 끝나도록 */
+#mapView{width:100%;}
+#mapCanvas{height:520px;}
+
+@media(max-width:760px){
+  html,body{height:auto;min-height:100%;}
+  body{overflow-x:hidden;overflow-y:auto;}
+  .app{
+    width:100%;
+    height:auto !important;
+    max-height:none !important;
+    min-height:100vh;
+    margin:0;
+    border-radius:0;
+    overflow:hidden;
+  }
+  #main{height:auto !important;overflow:visible !important;}
+  .content{height:auto !important;overflow:visible !important;padding:0 14px 20px;}
+  .map,#mapCanvas{height:500px;}
+  #detailView.detail-modal-open .detail-modal-card{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+}
+</style>
+<style id="b2-final-css">
+.mobile-account-btn{display:none;}
+.account-name-field{margin:14px 0 16px;}
+.account-name-field label{display:block;font-size:13px;font-weight:700;color:#374151;margin-bottom:7px;}
+.account-name-field input{width:100%;box-sizing:border-box;height:42px;border:1px solid #dfe3ec;border-radius:11px;padding:0 12px;font:inherit;color:#20242b;}
+.account-name-save{margin-top:8px;width:100%;}
+.visit-event{margin:0 0 16px;padding:13px 14px;border:1px solid #e7e9f0;border-radius:12px;background:#fff;}
+.visit-event-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:9px;}
+.visit-event-date{font-size:13px;font-weight:800;color:#5967d9;}
+.visit-event-owner{font-size:11px;color:#8a93a3;}
+.visit-comment{padding:9px 0;border-top:1px solid #f0f1f5;}
+.visit-comment:first-child{border-top:0;padding-top:0;}
+.visit-comment-author{font-size:12px;font-weight:800;color:#374151;margin-bottom:3px;}
+.visit-comment-text{font-size:13px;color:#5f6877;line-height:1.6;white-space:pre-wrap;word-break:break-word;}
+.visit-comment-actions{display:flex;gap:6px;margin-top:6px;}
+.visit-comment-actions button{padding:5px 8px;border:1px solid #e1e4eb;border-radius:7px;background:#fff;font-size:11px;color:#667085;}
+.visit-event-add{margin-top:9px;padding:7px 10px;border:1px solid #d9def3;border-radius:8px;background:#f7f8ff;color:#5967d9;font-size:11px;font-weight:700;cursor:pointer;}
+.visit-event-select{width:100%;box-sizing:border-box;height:42px;border:1px solid #dfe3ec;border-radius:11px;padding:0 10px;background:#fff;font:inherit;color:#374151;}
+.memo-display{padding-left:0!important;margin-left:0!important;text-indent:0!important;}
+@media(max-width:760px){
+ .mobile-account-btn{display:inline-flex!important;align-items:center;justify-content:center;}
+ #currentUserEmail{display:none!important;}
+ .logo{font-size:15px!important;white-space:nowrap!important;word-break:keep-all!important;letter-spacing:-.7px;}
+ header>div:first-child{width:100%;flex:none;}
+ header>div:last-child{width:100%;overflow-x:auto;overflow-y:hidden;flex-wrap:nowrap!important;justify-content:flex-start!important;padding-bottom:2px;scrollbar-width:none;}
+ header>div:last-child::-webkit-scrollbar{display:none;}
+ header .space-current{max-width:118px;flex:none;}
+ header .auth-secondary,header .add{flex:none;white-space:nowrap;}
+ #categoryChips{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;white-space:nowrap!important;scrollbar-width:none;}
+ #categoryChips::-webkit-scrollbar{display:none;}
+ #categoryChips .chip{flex:0 0 auto;}
+ .place-card{width:100%;min-width:0;min-height:96px;}
+ .place-card .thumb{width:84px!important;min-width:84px!important;height:84px!important;}
+ .place-card .info{min-width:0;padding:14px 14px 14px 4px;}
+ .place-card .name{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ .place-card .meta,.place-card .place-visit{font-size:12px!important;}
+ .place-card .note{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+}
+@media(max-width:430px){#categoryChips .category-chip-icon{display:none!important;}}
+@media(max-width:390px){.place-card .thumb{width:72px!important;min-width:72px!important;height:72px!important;}.place-card .info{padding-left:2px;}}
+</style>
 </head>
 <body class='auth-locked'>
 <div class="auth-screen" id="authScreen">
   <div class="auth-card">
-    <div class="auth-logo">Our Place <span class="app-version">v0.2-A</span></div>
+    <div class="auth-logo">Our Place <span class="app-version">v0.2-B</span></div>
     <div class="auth-sub">함께 발견하고, 함께 경험한 장소를 기록해요.</div>
     <div id="supabaseStatus" style="font-size:12px;color:#777;margin-bottom:14px">Supabase 연결 중...</div>
     <label for="authEmail">이메일</label>
@@ -3296,6 +3611,8 @@ body{overflow-x:hidden;}
       style="border:0;background:none;padding:6px;font-size:13px;color:#666;white-space:nowrap;cursor:pointer"
     >
     </button>
+
+    <button class="auth-secondary mobile-account-btn" type="button" onclick="openAccountModal()">계정</button>
 
     <button
       class="add"
@@ -3625,7 +3942,8 @@ function renderPagination(totalPages){
 function changePage(page){currentPage=Math.max(1,page);render();const content=document.querySelector('.content');if(content)content.scrollTop=0;}
 function toggleGoPlaces(btn){
   goPlacesOnly=!goPlacesOnly;
-  if(btn) btn.classList.toggle('active',goPlacesOnly);
+  const chip=document.getElementById('goPlacesChip')||btn;
+  if(chip) chip.classList.toggle('active',goPlacesOnly);
   currentPage=1;
   render();
 }
@@ -4020,8 +4338,13 @@ function getCategoryChipIcon(cat){
 }
 function setCat(el,c){
   cat=c;
-  document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+  // 카테고리 필터만 서로 배타적으로 활성화하고,
+  // '가볼 곳' 필터는 별도의 조건이므로 활성 상태를 유지한다.
+  document.querySelectorAll('#categoryChips .chip[data-cat]').forEach(x=>x.classList.remove('active'));
   el.classList.add('active');
+  const goChip=document.getElementById('goPlacesChip');
+  if(goChip) goChip.classList.toggle('active',goPlacesOnly);
+  currentPage=1;
   render();
   applyMapFilter();
 }
@@ -4081,6 +4404,22 @@ function showView(v){
   }
 }
 
+function closeDetail(){
+  const returnView=detailReturnView==='map'?'map':'list';
+  const state=detailReturnMapState;
+  detailReturnMapState=null;
+  window.currentDetailPlaceId=null;
+  showView(returnView);
+  if(returnView==='map' && state){
+    setTimeout(()=>{
+      if(naverMap){
+        naverMap.setCenter(state.center);
+        naverMap.setZoom(state.zoom);
+      }
+    },80);
+  }
+}
+
 function escapeHtml(value){
   return String(value??'').replace(/[&<>"']/g, ch=>({
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
@@ -4101,15 +4440,74 @@ function openEditPlace(id){
   document.getElementById('editId').value=p.id;
   document.getElementById('editName').value=p.name||'';
   document.getElementById('editCat').value=p.cat||'';
+  document.getElementById('editAddress').value=p.address||'';
   document.getElementById('editUrl').value=p.url||'';
   document.getElementById('editMemo').value=p.note||'';
 
+  const status=document.getElementById('editLocationStatus');
+  if(status){
+    status.textContent=p.address ? '저장된 주소가 있습니다. 주소를 바꾸면 위치를 다시 확인해주세요.' : '주소를 입력한 뒤 위치를 다시 확인할 수 있습니다.';
+    status.classList.remove('success');
+  }
+  window.pendingEditPlaceLocation=null;
   modal.style.display='flex';
 
 }
 function closeEditPlace(){
   const modal=document.getElementById('editModal');
   if(modal) modal.style.display='none';
+  window.pendingEditPlaceLocation=null;
+}
+async function checkEditLocationFromAddress(){
+  const address=(document.getElementById('editAddress')?.value||'').trim();
+  const status=document.getElementById('editLocationStatus');
+  if(!status) return;
+
+  if(!address){
+    status.textContent='먼저 주소를 입력해주세요.';
+    status.classList.remove('success');
+    return;
+  }
+
+  if(typeof naver==='undefined' || !naver.maps?.Service){
+    status.textContent='지도 검색 기능을 불러오지 못했습니다.';
+    status.classList.remove('success');
+    return;
+  }
+
+  status.textContent='주소의 위치를 확인하는 중입니다...';
+  status.classList.remove('success');
+
+  naver.maps.Service.geocode({query:address},(statusCode,response)=>{
+    const addresses=response?.v2?.addresses||[];
+    if(statusCode!==naver.maps.Service.Status.OK || !addresses.length){
+      status.textContent='입력한 주소의 위치를 찾지 못했습니다. 주소를 다시 확인해주세요.';
+      return;
+    }
+
+    const result=addresses[0];
+    const latitude=Number(result.y);
+    const longitude=Number(result.x);
+    if(!Number.isFinite(latitude) || !Number.isFinite(longitude)){
+      status.textContent='위치 좌표를 확인하지 못했습니다.';
+      return;
+    }
+
+    const region=
+      extractRegionFromText(address) ||
+      extractRegionFromGeocodeResult(result);
+
+    window.pendingEditPlaceLocation={
+      latitude,
+      longitude,
+      region
+    };
+
+    status.textContent=`✓ 위치 확인 완료${region ? ' · '+region : ''}`;
+    status.classList.add('success');
+
+    if(naverMap) focusMapOnPlace({latitude,longitude});
+  });
 }
 async function saveEditedPlace(){
   const id=document.getElementById('editId').value;
@@ -4119,20 +4517,58 @@ async function saveEditedPlace(){
 
   const name=document.getElementById('editName').value.trim()||p.name;
   const category=document.getElementById('editCat').value;
+  const address=document.getElementById('editAddress').value.trim();
   const url=document.getElementById('editUrl').value.trim();
   const memo=document.getElementById('editMemo').value.trim();
+
+  let latitude=p.latitude ?? null;
+  let longitude=p.longitude ?? null;
+  let region=p.region||'';
+
+  const addressChanged=address!==String(p.address||'').trim();
+
+  // 기존 장소도 주소를 기준으로 새 지역 규칙을 적용합니다.
+  // 예: 경기도 성남시 분당구 → 경기 성남
+  const addressRegion=address ? extractRegionFromText(address) : '';
+  if(addressRegion){
+    region=addressRegion;
+  }
+
+  if(addressChanged && address){
+    let location=window.pendingEditPlaceLocation;
+    if(!location){
+      const status=document.getElementById('editLocationStatus');
+      if(status) status.textContent='주소 위치를 확인하는 중입니다...';
+      location=await geocodeTextLocation(address);
+    }
+    if(!location){
+      alert('입력한 주소의 위치를 찾지 못했습니다. 주소를 확인한 뒤 저장해주세요.');
+      return;
+    }
+    latitude=location.latitude;
+    longitude=location.longitude;
+
+    // 카드에 저장할 지역은 입력한 주소에서 먼저 확정합니다.
+    // NAVER 응답 형식에 따라 region이 비어 있어도
+    // '경기 광주시 ...' → '경기 광주'처럼 저장되도록 합니다.
+    region=addressRegion||location.region||'';
+  }
 
   const {data,error}=await supabaseClient
     .from('places')
     .update({
       name:name,
       category:category,
+      address:address||null,
+      latitude:latitude,
+      longitude:longitude,
+      region:region||null,
       naver_map_url:url,
       memo:memo
     })
     .eq('id',id)
     .eq('space_id',window.currentSpaceId)
-    .select('id,space_id,name,category,latitude,longitude,region,naver_map_url,memo,created_by,created_at,updated_at')
+    .select('id,space_id,name,category,address,latitude,longitude,region,naver_map_url,memo,created_by,created_at,updated_at')
     .single();
 
   if(error){
@@ -4142,9 +4578,9 @@ async function saveEditedPlace(){
   }
 
   console.log('Place updated:',data);
+  window.pendingEditPlaceLocation=null;
 
   await loadPlacesForCurrentSpace();
-
   closeEditPlace();
 
   if(typeof syncMapPins==='function') syncMapPins();
@@ -4162,8 +4598,14 @@ async function openDetail(id){
   console.log('찾은 장소:', p);
 
   if(!p) return;
+  window.currentDetailPlaceId=p.id;
 
-  detailReturnView=(view==='map'||view==='list')?view:'list';
+  // 상세 화면에 들어오기 직전의 화면을 유지합니다.
+  // 상세 내부에서 편집/방문 기록을 저장한 뒤 다시 openDetail()이 호출되어도
+  // 최초 진입 화면(리스트 또는 지도)을 잃지 않습니다.
+  if(view==='map'||view==='list') detailReturnView=view;
+  if(detailReturnView!=='map' && detailReturnView!=='list') detailReturnView='list';
+  view='detail';
 
   if(detailReturnView==='map' && naverMap){
     detailReturnMapState={
@@ -4182,143 +4624,55 @@ async function openDetail(id){
   if(map) map.style.display='none';
   if(!detail) return;
 
-  detail.style.display='flex';
-  detail.classList.add('detail-modal-open');
+  detail.style.display='block';
+  detail.classList.remove('detail-modal-open');
 
-  // 현재 장소의 방문 기록을 Supabase에서 조회
-  const {data:visitRecords,error:visitError}=await supabaseClient
-    .from('visit_records')
-    .select('id,place_id,created_by,visit_date,review,created_at,updated_at')
-    .eq('place_id',p.id)
-    .order('visit_date',{ascending:false});
-    console.log('방문기록 조회 완료:', visitRecords, visitError);
-    console.log('상세페이지 HTML 생성 시작');
-
-  if(visitError){
-    console.error('Visit record select error:',visitError);
-    alert('방문 기록 조회 실패: '+visitError.message);
-    return;
+  // 2차-B: 방문 이벤트 + 멤버별 댓글
+  const {data:events,error:eventError}=await supabaseClient.from('visit_events').select('id,place_id,visit_date,created_by,created_at,updated_at').eq('place_id',p.id).order('visit_date',{ascending:false}).order('created_at',{ascending:false});
+  if(eventError){console.error('Visit event select error:',eventError);alert('방문 이벤트 조회 실패: '+eventError.message+'\n\nSupabase에서 2차-B DB 설정 SQL을 먼저 실행해주세요.');return;}
+  const visitEvents=events||[];
+  const eventIds=visitEvents.map(v=>v.id);
+  let comments=[];
+  if(eventIds.length){
+    const {data:commentData,error:commentError}=await supabaseClient.from('visit_comments').select('id,visit_event_id,created_by,comment,created_at,updated_at').in('visit_event_id',eventIds).order('created_at',{ascending:true});
+    if(commentError){alert('방문 댓글 조회 실패: '+commentError.message);console.error(commentError);return;}
+    comments=commentData||[];
   }
-
-  const visits=visitRecords||[];
-  const visitCreatorIds=[...new Set(visits.map(v=>v.created_by).filter(Boolean))];
-  if(visitCreatorIds.length){
-    const {data:visitUsers,error:visitUserError}=await supabaseClient.from('users').select('id,name').in('id',visitCreatorIds);
-    if(!visitUserError)(visitUsers||[]).forEach(u=>{userNameMap[u.id]=u.name||'이름 미지정';});
-  }
-  const visitCount=visits.length;
-
-  const visitHtml=visits.length
-  ? visits.map(v=>`
-      <div class="visit-record" data-visit-id="${v.id}">
-        <div class="visit-date">
-          ${escapeHtml(v.visit_date||'날짜 없음')}
-        </div>
-
-        <div class="visit-review">${escapeHtml(v.review||'작성된 후기가 없습니다. ')}</div>
-
-        <div class="visit-actions">
-          <button
-            class="visit-edit-btn"
-            type="button"
-            onclick="editVisitRecord('${v.id}')">
-            ${ICONS.edit} 편집
-          </button>
-
-          <button
-            class="visit-delete-btn"
-            type="button"
-            onclick="deleteVisitRecord('${v.id}')">
-            ${ICONS.delete} 삭제
-          </button>
-        </div>
-      </div>
-    `).join('')
-  : '<div class="visit-review">아직 작성한 방문 기록이 없습니다.</div>';
+  const ids=[...new Set([...visitEvents.map(v=>v.created_by),...comments.map(c=>c.created_by)].filter(Boolean))];
+  if(ids.length){const {data:users,error:userError}=await supabaseClient.from('users').select('id,name').in('id',ids);if(!userError)(users||[]).forEach(u=>{userNameMap[u.id]=u.name||'이름 미지정';});}
+  const commentsByEvent={};comments.forEach(c=>{(commentsByEvent[c.visit_event_id] ||= []).push(c);});
+  const visitHtml=visitEvents.length ? visitEvents.map(v=>{
+    const cs=commentsByEvent[v.id]||[];
+    const ch=cs.length ? cs.map(c=>`<div class="visit-comment"><div class="visit-comment-author">${escapeHtml(userNameMap[c.created_by]||'이름 미지정')}</div><div class="visit-comment-text">${escapeHtml(c.comment||'작성된 기록이 없습니다.')}</div>${String(c.created_by||'')===String(currentAuthUser?.id||'')?`<div class="visit-comment-actions"><button type="button" onclick="editVisitComment('${c.id}')">편집</button><button type="button" onclick="deleteVisitComment('${c.id}')">삭제</button></div>`:''}</div>`).join('') : '<div class="visit-comment-text">아직 이 방문의 기록이 없습니다.</div>';
+    return `<div class="visit-event" data-visit-event-id="${v.id}"><div class="visit-event-head"><div class="visit-event-date">${escapeHtml(v.visit_date||'날짜 없음')}</div><div class="visit-event-owner">방문 등록 · ${escapeHtml(userNameMap[v.created_by]||'이름 미지정')}</div></div><div class="visit-comment-list">${ch}</div><button class="visit-event-add" type="button" onclick="addVisitComment('${v.id}')">＋ 내 기록 추가</button></div>`;
+  }).join('') : '<div class="visit-review">아직 방문 기록이 없습니다.</div>';
+  const visitCount=visitEvents.length;
   detail.innerHTML=`
     <div class="detail-modal-card">
-    <button class="back" id="detailBack">
-      ← ${detailReturnView==='map'?'지도':'리스트'}로 돌아가기
-    </button>
-
-    <div class="detail-head">
-  <div>
-    <div class="hero">${getPlaceCategoryIcon(p.cat)}</div>
-  </div>
-
-  <div class="detail-title">
-    <h1>${escapeHtml(p.name)}</h1>
-    <div class="meta">
-      ${escapeHtml(p.region||'지역 미지정')} ·
-      ${escapeHtml(p.cat||'기타')} ·
-      ${escapeHtml(p.creatorName||'이름 미지정')}
-    </div>
-  </div>
-
-  <div class="detail-actions">
-    <button class="edit-btn" id="editPlaceBtn">
-      ${ICONS.edit} 편집
-    </button>
-
-    <button class="delete-btn" id="deletePlaceBtn">
-      ${ICONS.delete} 삭제
-    </button>
-  </div>
-</div>
-
-<a class="naver"
-   href="${escapeHtml(p.url||'https://map.naver.com/')}"
-   target="_blank">
-   ${ICONS.map} 네이버 지도에서 보기
-</a>
-
-<div class="detail-section">
-  <div class="section-title">
-    ${ICONS.location} 장소 정보
-  </div>
-
-  <div class="detail-body">
-    주소 · ${escapeHtml(p.region||'지역 미지정')}<br>
-    장소 정보는 지도 API 연결 단계에서 채울 예정입니다.
-  </div>
-</div>
-
-<div class="detail-section">
-  <div class="section-title">
-    ${ICONS.note} 우리 메모
-  </div>
-
-  <div class="detail-body memo-display">
-    ${escapeHtml(p.note||'아직 메모가 없습니다.')}
-  </div>
-</div>
-
-<div class="detail-section">
-  <div class="section-title">
-    ${ICONS.visit} 방문 기록
-  </div>
-
-      <div class="detail-body">
-
-        <div class="visit-count">
-          ${visitCount}회 방문
-        </div>
-
-        <div class="visit-record-list">
-          ${visitHtml}
-        </div>
-
-        <button class="add-visit-btn" id="addVisitBtn">
-          ＋ 방문 기록 추가
-        </button>
-
-      </div>
-    </div>
-    </div>
-  `;
-console.log('상세페이지 HTML 생성 완료:', document.getElementById('detailView'));
+    <button class="back" id="detailBack">← ${detailReturnView==='map'?'지도':'리스트'}로 돌아가기</button>
+    <div class="detail-head"><div><div class="hero">${getPlaceCategoryIcon(p.cat)}</div></div><div class="detail-title"><h1>${escapeHtml(p.name)}</h1><div class="meta">${escapeHtml(p.region||'지역 미지정')} · ${escapeHtml(p.cat||'기타')} · ${escapeHtml(p.creatorName||'이름 미지정')}</div></div><div class="detail-actions"><button class="edit-btn" id="editPlaceBtn">${ICONS.edit} 편집</button><button class="delete-btn" id="deletePlaceBtn">${ICONS.delete} 삭제</button></div></div>
+    ${getNaverPlaceUrl(p)?`<a class="naver" href="${escapeHtml(getNaverPlaceUrl(p))}" target="_blank" rel="noopener noreferrer">${ICONS.map} 네이버 지도에서 보기</a>`:`<button class="naver naver-missing" type="button" onclick="openEditPlace('${p.id}')">${ICONS.map} 네이버 지도 URL 추가</button>`}
+    <div class="detail-section"><div class="section-title">${ICONS.location} 장소 정보</div><div class="detail-body">${p.address?escapeHtml(p.address)+'<br>':'주소 미등록<br>'}지역 · ${escapeHtml(p.region||'지역 미지정')}</div></div>
+    <div class="detail-section"><div class="section-title">${ICONS.note} 우리 메모</div><div class="detail-body memo-display">${escapeHtml(p.note||'아직 메모가 없습니다.')}</div></div>
+    <div class="detail-section"><div class="section-title">${ICONS.visit} 방문 기록</div><div class="detail-body"><div class="visit-count">${visitCount}회 방문</div><div class="visit-record-list">${visitHtml}</div><button class="add-visit-btn" id="addVisitBtn">＋ 방문 기록 추가</button></div></div>
+    </div>`;
   document.getElementById('detailBack').onclick=()=>{
-    closeDetail();
+    const returnView=detailReturnView==='map'?'map':'list';
+    if(returnView==='map' && detailReturnMapState){
+      const state=detailReturnMapState;
+      detailReturnMapState=null;
+      showView('map');
+      setTimeout(()=>{
+        if(naverMap){
+          naverMap.setCenter(state.center);
+          naverMap.setZoom(state.zoom);
+        }
+      },80);
+    }else{
+      detailReturnMapState=null;
+      showView(returnView);
+    }
+    window.currentDetailPlaceId=null;
   };
 
   document.getElementById('editPlaceBtn').onclick=()=>{
@@ -4372,200 +4726,26 @@ const ICONS = {
       <path d="M8.5 4v14M15.5 6v14"/>
     </svg>`
 };
-let currentVisitPlaceId = null;
-let currentVisitEditId = null;
-
-function addVisitRecord(placeId){
-
-  const p=places.find(x=>String(x.id)===String(placeId));
-  if(!p) return;
-
-  currentVisitPlaceId=p.id;
-  currentVisitEditId=null;
-
-  const modal=document.getElementById('visitModal');
-  const title=document.querySelector('#visitModal h2');
-  const saveBtn=document.getElementById('visitSaveBtn');
-  const dateInput=document.getElementById('visitDateInput');
-  const reviewInput=document.getElementById('visitReviewInput');
-
-  if(!modal || !dateInput || !reviewInput) return;
-
-  if(title) title.textContent='방문 기록 추가';
-  if(saveBtn) saveBtn.textContent='저장';
-  dateInput.value=new Date().toISOString().slice(0,10);
-  reviewInput.value='';
-  modal.style.display='flex';
-
-  setTimeout(()=>dateInput.focus(),50);
+let currentVisitPlaceId=null;
+let currentVisitEditId=null;
+let currentVisitEventId=null;
+let currentVisitMode='new';
+async function addVisitRecord(placeId){
+  const p=places.find(x=>String(x.id)===String(placeId));if(!p)return;
+  currentVisitPlaceId=p.id;currentVisitEditId=null;currentVisitEventId=null;currentVisitMode='new';await populateVisitEventSelect(p.id);
+  const modal=document.getElementById('visitModal'),title=document.querySelector('#visitModal h2'),saveBtn=document.getElementById('visitSaveBtn'),dateInput=document.getElementById('visitDateInput'),reviewInput=document.getElementById('visitReviewInput'),select=document.getElementById('visitEventSelect');
+  if(!modal||!dateInput||!reviewInput)return;if(title)title.textContent='방문 기록 추가';if(saveBtn)saveBtn.textContent='저장';dateInput.value=new Date().toISOString().slice(0,10);reviewInput.value='';if(select){select.value='__new__';select.style.display='block';}modal.style.display='flex';setTimeout(()=>dateInput.focus(),50);
 }
+async function populateVisitEventSelect(placeId){const select=document.getElementById('visitEventSelect');if(!select)return;const {data,error}=await supabaseClient.from('visit_events').select('id,visit_date').eq('place_id',placeId).order('visit_date',{ascending:false}).order('created_at',{ascending:false});if(error){console.error(error);select.innerHTML='<option value="__new__">새로운 방문으로 기록</option>';return;}select.innerHTML='<option value="__new__">새로운 방문으로 기록</option>'+(data||[]).map(v=>`<option value="${v.id}">${escapeHtml(v.visit_date)} 방문에 기록 추가</option>`).join('');}
+function closeVisitModal(){const modal=document.getElementById('visitModal');if(modal)modal.style.display='none';currentVisitPlaceId=null;currentVisitEditId=null;currentVisitEventId=null;currentVisitMode='new';}
+async function getVisitEvent(eventId){const {data,error}=await supabaseClient.from('visit_events').select('id,place_id,visit_date,created_by').eq('id',eventId).single();if(error){alert('방문 이벤트 조회 실패: '+error.message);return null;}return data;}
+async function addVisitComment(eventId){const event=await getVisitEvent(eventId);if(!event)return;currentVisitPlaceId=event.place_id;currentVisitEventId=event.id;currentVisitEditId=null;currentVisitMode='comment';const modal=document.getElementById('visitModal'),title=document.querySelector('#visitModal h2'),saveBtn=document.getElementById('visitSaveBtn'),dateInput=document.getElementById('visitDateInput'),reviewInput=document.getElementById('visitReviewInput'),select=document.getElementById('visitEventSelect');if(title)title.textContent='방문 기록 추가';if(saveBtn)saveBtn.textContent='저장';if(dateInput)dateInput.value=event.visit_date||'';if(select){select.style.display='none';select.value=event.id;}if(reviewInput)reviewInput.value='';if(modal)modal.style.display='flex';setTimeout(()=>reviewInput?.focus(),50);}
+async function saveVisitRecord(){if(!currentVisitPlaceId)return;const dateInput=document.getElementById('visitDateInput'),reviewInput=document.getElementById('visitReviewInput'),select=document.getElementById('visitEventSelect');const visitDate=dateInput?.value,review=reviewInput?.value.trim()||null;if(!visitDate){alert('방문 날짜를 입력해주세요.');return;}const {data:userData,error:userError}=await supabaseClient.auth.getUser();if(userError||!userData?.user){alert('로그인 정보를 확인할 수 없습니다.');return;}const uid=userData.user.id;if(currentVisitEditId){const {data,error}=await supabaseClient.from('visit_comments').update({comment:review}).eq('id',currentVisitEditId).eq('created_by',uid).select('visit_event_id').single();if(error){alert('방문 기록 수정 실패: '+error.message);return;}const event=await getVisitEvent(data.visit_event_id);closeVisitModal();if(event)await openDetail(event.place_id);return;}let eventId=currentVisitEventId;if(currentVisitMode==='new')eventId=select?.value&&select.value!=='__new__'?select.value:null;if(!eventId){const {data:event,error}=await supabaseClient.from('visit_events').insert({place_id:currentVisitPlaceId,visit_date:visitDate,created_by:uid}).select('id').single();if(error){alert('방문 이벤트 저장 실패: '+error.message);return;}eventId=event.id;}const {error:commentError}=await supabaseClient.from('visit_comments').insert({visit_event_id:eventId,created_by:uid,comment:review});if(commentError){alert('방문 기록 저장 실패: '+commentError.message);return;}const placeId=currentVisitPlaceId;closeVisitModal();await loadPlacesForCurrentSpace();if(typeof loadNotifications==='function') loadNotifications();await openDetail(placeId);}
+async function editVisitComment(commentId){const {data,error}=await supabaseClient.from('visit_comments').select('id,visit_event_id,created_by,comment').eq('id',commentId).single();if(error){alert('방문 기록 조회 실패: '+error.message);return;}const {data:userData}=await supabaseClient.auth.getUser();if(String(data.created_by)!==String(userData?.user?.id)){alert('본인이 작성한 기록만 편집할 수 있습니다.');return;}const event=await getVisitEvent(data.visit_event_id);if(!event)return;currentVisitPlaceId=event.place_id;currentVisitEventId=event.id;currentVisitEditId=data.id;currentVisitMode='edit';const modal=document.getElementById('visitModal'),title=document.querySelector('#visitModal h2'),saveBtn=document.getElementById('visitSaveBtn'),dateInput=document.getElementById('visitDateInput'),reviewInput=document.getElementById('visitReviewInput'),select=document.getElementById('visitEventSelect');if(title)title.textContent='방문 기록 편집';if(saveBtn)saveBtn.textContent='수정 저장';if(dateInput)dateInput.value=event.visit_date||'';if(reviewInput)reviewInput.value=data.comment||'';if(select)select.style.display='none';if(modal)modal.style.display='flex';setTimeout(()=>reviewInput?.focus(),50);}
+async function deleteVisitComment(commentId){if(!confirm('이 방문 기록을 삭제할까요?'))return;const {data,error}=await supabaseClient.from('visit_comments').delete().eq('id',commentId).select('visit_event_id').single();if(error){alert('방문 기록 삭제 실패: '+error.message);return;}const event=await getVisitEvent(data.visit_event_id);if(event)await openDetail(event.place_id);}
+async function editVisitRecord(id){return editVisitComment(id);}
+async function deleteVisitRecord(id){return deleteVisitComment(id);}
 
-function closeVisitModal(){
-  const modal=document.getElementById('visitModal');
-  if(modal) modal.style.display='none';
-  currentVisitPlaceId=null;
-  currentVisitEditId=null;
-}
-
-async function saveVisitRecord(){
-
-  if(!currentVisitPlaceId) return;
-
-  const dateInput=document.getElementById('visitDateInput');
-  const reviewInput=document.getElementById('visitReviewInput');
-  const visitDate=dateInput?.value;
-  const review=reviewInput?.value.trim()||null;
-
-  if(!visitDate){ alert('방문 날짜를 입력해주세요.'); return; }
-
-  if(currentVisitEditId){
-    const {data:updatedData,error:updateError}=await supabaseClient
-      .from('visit_records')
-      .update({visit_date:visitDate,review:review})
-      .eq('id',currentVisitEditId)
-      .select('id,place_id,visit_date,review')
-      .single();
-
-    if(updateError){
-      alert('방문 기록 수정 실패: '+updateError.message);
-      console.error('Visit record update error:',updateError);
-      return;
-    }
-
-    closeVisitModal();
-    await loadPlacesForCurrentSpace();
-    await openDetail(updatedData.place_id);
-    return;
-  }
-
-  const {data:userData,error:userError}=await supabaseClient.auth.getUser();
-  if(userError || !userData?.user){
-    alert('로그인 정보를 확인할 수 없습니다.');
-    console.error('Auth user error:',userError);
-    return;
-  }
-
-  const {data,error}=await supabaseClient
-    .from('visit_records')
-    .insert({place_id:currentVisitPlaceId,created_by:userData.user.id,visit_date:visitDate,review:review})
-    .select('id,place_id,created_by,visit_date,review,created_at,updated_at')
-    .single();
-
-  if(error){
-    alert('방문 기록 저장 실패: '+error.message);
-    console.error('Visit record insert error:',error);
-    return;
-  }
-
-  closeVisitModal();
-  await loadPlacesForCurrentSpace();
-  await openDetail(data.place_id);
-}
-
-async function deletePlace(id){
-  if(!window.currentSpaceId){
-    alert('현재 Space를 확인할 수 없습니다.');
-    return;
-  }
-
-  const p=places.find(x=>String(x.id)===String(id));
-
-  if(!p) return;
-
-  const confirmed=confirm(
-    `"${p.name}" 장소를 삭제하시겠습니까?\n삭제하면 되돌릴 수 없습니다.`
-  );
-
-  if(!confirmed) return;
-
-  const {error}=await supabaseClient
-    .from('places')
-    .delete()
-    .eq('id',id)
-    .eq('space_id',window.currentSpaceId);
-
-  if(error){
-    alert('장소 삭제 실패: '+error.message);
-    console.error('Place delete error:',error);
-    return;
-  }
-
-  console.log('Place deleted:',id);
-
-  await loadPlacesForCurrentSpace();
-
-  closeDetail();
-  showView('list');
-
-  if(typeof render==='function') render();
-  if(typeof syncMapPins==='function') syncMapPins();
-}
-function closeDetail(){
-  const detail=document.getElementById('detailView');
-  if(detail){
-    detail.style.display='none';
-    detail.classList.remove('detail-modal-open');
-  }
-  showView(detailReturnView||'list');
-}
-
-async function editVisitRecord(visitId){
-
-  const {data,error}=await supabaseClient
-    .from('visit_records')
-    .select('id,place_id,visit_date,review')
-    .eq('id',visitId)
-    .single();
-
-  if(error){
-    alert('방문 기록 조회 실패: '+error.message);
-    console.error('Visit record edit select error:',error);
-    return;
-  }
-
-  currentVisitPlaceId=data.place_id;
-  currentVisitEditId=data.id;
-
-  const modal=document.getElementById('visitModal');
-  const title=document.querySelector('#visitModal h2');
-  const saveBtn=document.getElementById('visitSaveBtn');
-  const dateInput=document.getElementById('visitDateInput');
-  const reviewInput=document.getElementById('visitReviewInput');
-
-  if(!modal || !dateInput || !reviewInput) return;
-
-  if(title) title.textContent='방문 기록 편집';
-  if(saveBtn) saveBtn.textContent='수정 저장';
-  dateInput.value=data.visit_date||'';
-  reviewInput.value=data.review||'';
-  modal.style.display='flex';
-
-  setTimeout(()=>dateInput.focus(),50);
-}
-
-async function deleteVisitRecord(visitId){
-
-  const ok=confirm('이 방문 기록을 삭제할까요?');
-
-  if(!ok) return;
-
-  const {data,error}=await supabaseClient
-    .from('visit_records')
-    .delete()
-    .eq('id',visitId)
-    .select('id,place_id')
-    .single();
-
-  if(error){
-    alert('방문 기록 삭제 실패: '+error.message);
-    console.error('Visit record delete error:',error);
-    return;
-  }
-
-  console.log('Visit record deleted:',data);
-
-  await openDetail(data.place_id);
-}
 function hexToHsl(hex){
 
   const clean=String(hex).replace('#','');
@@ -4797,29 +4977,168 @@ function extractNaverSearchText(url){
   return '';
 }
 
-function extractRegionFromGeocodeResult(result){
-  const elements=result?.addressElements||[];
-  const sigungu=elements.find(e=>(e.types||[]).includes('SIGUGUN'));
-  const name=sigungu?.longName||sigungu?.shortName||'';
-  if(name) return name.endsWith('구')?name:name;
-  const text=result?.roadAddress||result?.jibunAddress||result?.address||'';
-  const match=text.match(/([가-힣]+구)(?:\s|$)/);
-  return match?match[1]:'';
-}
-function extractRegionFromReverseResult(result){
-  return extractRegionFromGeocodeResult(result);
+function normalizeSidoName(name){
+  const value=String(name||'').trim();
+  const map={
+    '서울특별시':'서울',
+    '경기도':'경기',
+    '강원특별자치도':'강원',
+    '강원도':'강원',
+    '충청북도':'충북',
+    '충청남도':'충남',
+    '전라북도':'전북',
+    '전북특별자치도':'전북',
+    '전라남도':'전남',
+    '경상북도':'경북',
+    '경상남도':'경남',
+    '제주특별자치도':'제주',
+    '부산광역시':'부산',
+    '대구광역시':'대구',
+    '인천광역시':'인천',
+    '광주광역시':'광주',
+    '대전광역시':'대전',
+    '울산광역시':'울산',
+    '세종특별자치시':'세종'
+  };
+  return map[value] || value.replace(/특별자치도$|광역시$|특별시$/,'').trim();
 }
 
-function reverseGeocodeRegion(latitude,longitude){
+function stripCitySuffix(name){
+  return String(name||'').trim().replace(/시$/,'');
+}
+
+function stripCountySuffix(name){
+  return String(name||'').trim().replace(/군$/,'');
+}
+
+function stripDistrictSuffix(name){
+  return String(name||'').trim().replace(/구$/,'');
+}
+
+function extractAddressParts(result){
+  const elements=result?.addressElements||[];
+  const getLong=(type)=>{
+    const item=elements.find(e=>(e.types||[]).includes(type));
+    return String(item?.longName||item?.shortName||'').trim();
+  };
+  return {
+    sido:getLong('SIDO'),
+    sigungu:getLong('SIGUGUN')
+  };
+}
+
+function buildRegionFromParts(sido,sigungu){
+  const normalizedSido=normalizeSidoName(sido);
+  const normalizedSigungu=String(sigungu||'').trim();
+  if(!normalizedSido || !normalizedSigungu) return '';
+
+  // 서울은 기존 필터와 동일하게 '구' 단위로 표시합니다.
+  if(normalizedSido==='서울'){
+    return normalizedSigungu.endsWith('구')
+      ? normalizedSigungu
+      : normalizedSigungu;
+  }
+
+  // 경기는 '구'가 있는 시라도 시 단위로 통일합니다.
+  // 예: 성남시 분당구 → 경기 성남 / 광주시 → 경기 광주
+  if(normalizedSido==='경기'){
+    const cityMatch=normalizedSigungu.match(/^(.+?시)/);
+    if(cityMatch) return `${normalizedSido} ${stripCitySuffix(cityMatch[1])}`;
+    if(normalizedSigungu.endsWith('군')) return `${normalizedSido} ${stripCountySuffix(normalizedSigungu)}`;
+    return `${normalizedSido} ${stripDistrictSuffix(normalizedSigungu)}`;
+  }
+
+  // 부산/대구/인천 등 광역시는 광역시 자체를 지역으로 사용합니다.
+  const metropolitan=['부산','대구','인천','광주','대전','울산','세종'];
+  if(metropolitan.includes(normalizedSido)) return normalizedSido;
+
+  // 그 외 지역은 '도 + 시/군' 단위입니다.
+  if(normalizedSigungu.endsWith('시')){
+    return `${normalizedSido} ${stripCitySuffix(normalizedSigungu)}`;
+  }
+  if(normalizedSigungu.endsWith('군')){
+    return `${normalizedSido} ${stripCountySuffix(normalizedSigungu)}`;
+  }
+  return `${normalizedSido} ${stripDistrictSuffix(normalizedSigungu)}`;
+}
+
+function extractRegionFromText(text){
+  const value=String(text||'').trim();
+  if(!value) return '';
+
+  // 전체 명칭과 주소에서 자주 쓰는 축약형을 모두 인식합니다.
+  const sidoMatch=value.match(/^(서울특별시|서울|경기도|경기|강원특별자치도|강원도|강원|충청북도|충북|충청남도|충남|전라북도|전북특별자치도|전북|전라남도|전남|경상북도|경북|경상남도|경남|제주특별자치도|제주|부산광역시|부산|대구광역시|대구|인천광역시|인천|광주광역시|광주|대전광역시|대전|울산광역시|울산|세종특별자치시|세종)/);
+  const sido=sidoMatch?sidoMatch[1]:'';
+  if(!sido) return '';
+
+  const rest=value.slice(sido.length).trim();
+  const sigunguMatch=rest.match(/^([^\s,]+(?:시|군|구))(?:\s|,|$)/);
+  const sigungu=sigunguMatch?sigunguMatch[1]:'';
+  return buildRegionFromParts(sido,sigungu);
+}
+
+function extractRegionFromGeocodeResult(result){
+  const {sido,sigungu}=extractAddressParts(result);
+  const direct=buildRegionFromParts(sido,sigungu);
+  if(direct) return direct;
+
+  const textCandidates=[
+    result?.roadAddress,
+    result?.jibunAddress,
+    result?.address,
+    result?.addrdetail?.sigugun
+  ];
+  for(const text of textCandidates){
+    const region=extractRegionFromText(text);
+    if(region) return region;
+  }
+  return '';
+}
+
+function getNaverPlaceUrl(place){
+  const url=String(place?.url||'').trim();
+  if(!url) return '';
+  try{
+    const parsed=new URL(url);
+    if(parsed.protocol==='http:' || parsed.protocol==='https:') return parsed.href;
+  }catch(e){
+    console.warn('Invalid Naver map URL:',url);
+  }
+  return '';
+}
+
+function geocodeTextLocation(query){
   return new Promise(resolve=>{
-    if(typeof naver==='undefined'||!naver.maps?.Service){resolve('');return;}
-    naver.maps.Service.reverseGeocode({coords:new naver.maps.LatLng(Number(latitude),Number(longitude)),orders:'roadaddr,addr'},(statusCode,response)=>{
-      const addresses=response?.v2?.results||[];
-      const result=addresses[0]||{};
-      const elements=result.region?.area2?.name ? null : null;
-      const area2=result.region?.area2?.name||'';
-      resolve(area2);
-    });
+    const text=String(query||'').trim();
+    if(!text || typeof naver==='undefined' || !naver.maps?.Service){
+      resolve(null);
+      return;
+    }
+
+    naver.maps.Service.geocode(
+      {query:text},
+      (statusCode,response)=>{
+        const addresses=response?.v2?.addresses||[];
+        if(statusCode!==naver.maps.Service.Status.OK || !addresses.length){
+          resolve(null);
+          return;
+        }
+
+        const result=addresses[0];
+        const latitude=Number(result.y);
+        const longitude=Number(result.x);
+        if(!Number.isFinite(latitude) || !Number.isFinite(longitude)){
+          resolve(null);
+          return;
+        }
+
+        resolve({
+          latitude,
+          longitude,
+          region:extractRegionFromGeocodeResult(result)
+        });
+      }
+    );
   });
 }
 
@@ -4868,10 +5187,18 @@ function checkLocationFromAddress(){
         return;
       }
 
-      window.pendingPlaceLocation={latitude,longitude,region:extractRegionFromGeocodeResult(result)};
+      const directRegion=
+        extractRegionFromText(address) ||
+        extractRegionFromGeocodeResult(result);
+
+      window.pendingPlaceLocation={
+        latitude,
+        longitude,
+        region:directRegion
+      };
 
       status.textContent=
-        `✓ 위치 확인 완료 (${latitude.toFixed(6)}, ${longitude.toFixed(6)})`;
+        `✓ 위치 확인 완료${directRegion ? ' · '+directRegion : ''} (${latitude.toFixed(6)}, ${longitude.toFixed(6)})`;
       status.classList.add('success');
 
       if(naverMap){
@@ -4901,7 +5228,7 @@ function checkLocationFromNaverUrl(){
 
   if(location){
 
-    window.pendingPlaceLocation=location;
+    window.pendingPlaceLocation={...location,region:''};
 
     status.textContent=
       `✓ 위치 확인 완료 (${location.latitude.toFixed(6)}, ${location.longitude.toFixed(6)})`;
@@ -4957,10 +5284,20 @@ function checkLocationFromNaverUrl(){
         return;
       }
 
-      window.pendingPlaceLocation={latitude,longitude};
+      const region=
+        extractRegionFromGeocodeResult(result) ||
+        extractRegionFromText(
+          document.getElementById('newAddress')?.value || ''
+        );
+
+      window.pendingPlaceLocation={
+        latitude,
+        longitude,
+        region
+      };
 
       status.textContent=
-        `✓ 위치 확인 완료 (${latitude.toFixed(6)}, ${longitude.toFixed(6)})`;
+        `✓ 위치 확인 완료${region ? ' · '+region : ''} (${latitude.toFixed(6)}, ${longitude.toFixed(6)})`;
       status.classList.add('success');
 
       console.log('Geocoding result:',result);
@@ -4990,11 +5327,9 @@ async function savePlace(){
 
   const location=window.pendingPlaceLocation||null;
   const address=(document.getElementById('newAddress')?.value||'').trim();
-  let region=location?.region||'';
-  if(!region && address){
-    const match=address.match(/([가-힣]+구)(?:\s|$)/);
-    region=match?match[1]:'';
-  }
+  // 카드에 표시되는 지역은 입력 주소에서 우선 확정합니다.
+  let region=address ? extractRegionFromText(address) : '';
+  if(!region) region=location?.region||'';
 
   const {data,error}=await supabaseClient
     .from('places')
@@ -5002,6 +5337,7 @@ async function savePlace(){
       space_id:window.currentSpaceId,
       name:name,
       category:c,
+      address:address||null,
       latitude:location?.latitude ?? null,
       longitude:location?.longitude ?? null,
       region:region||null,
@@ -5009,7 +5345,7 @@ async function savePlace(){
       memo:memo,
       created_by:userData.user.id
     })
-    .select('id,space_id,name,category,latitude,longitude,region,naver_map_url,memo,created_by,created_at,updated_at')
+    .select('id,space_id,name,category,address,latitude,longitude,region,naver_map_url,memo,created_by,created_at,updated_at')
     .single();
 
   if(error){
@@ -5023,6 +5359,7 @@ async function savePlace(){
   window.pendingPlaceLocation=null;
 
   await loadPlacesForCurrentSpace();
+  if(typeof loadNotifications==='function') loadNotifications();
 
   if(typeof syncMapPins==='function') syncMapPins();
 
@@ -5036,6 +5373,94 @@ async function savePlace(){
   if(typeof render==='function') render();
 
 }
+function formatNotificationTime(value){
+  const d=new Date(value);
+  if(!Number.isFinite(d.getTime())) return '';
+  const diff=Date.now()-d.getTime();
+  if(diff<60*1000) return '방금 전';
+  if(diff<60*60*1000) return Math.floor(diff/(60*1000))+'분 전';
+  if(diff<24*60*60*1000) return Math.floor(diff/(60*60*1000))+'시간 전';
+  return Math.floor(diff/(24*60*60*1000))+'일 전';
+}
+
+async function loadNotifications(){
+  const host=document.getElementById('cNotificationContent');
+  if(!host) return;
+  if(!supabaseClient || !window.currentSpaceId){
+    host.innerHTML='<div class="c-notification-empty">Space를 선택하면 알림이 표시됩니다.</div>';
+    return;
+  }
+  host.innerHTML='<div class="c-notification-loading">알림을 불러오는 중...</div>';
+  const since=new Date(Date.now()-7*24*60*60*1000).toISOString();
+  try{
+    const {data:placeData,error:placeError}=await supabaseClient
+      .from('places')
+      .select('id,name,created_by,created_at')
+      .eq('space_id',window.currentSpaceId)
+      .gte('created_at',since)
+      .order('created_at',{ascending:false});
+    if(placeError) throw placeError;
+
+    const placeIds=(placeData||[]).map(p=>p.id);
+    let eventData=[];
+    if(placeIds.length){
+      const {data,error}=await supabaseClient
+        .from('visit_events')
+        .select('id,place_id,visit_date,created_by,created_at')
+        .in('place_id',placeIds)
+        .gte('created_at',since)
+        .order('created_at',{ascending:false});
+      if(error) throw error;
+      eventData=data||[];
+    }
+
+    const creatorIds=[...new Set([...(placeData||[]).map(p=>p.created_by),...eventData.map(v=>v.created_by)].filter(Boolean))];
+    if(creatorIds.length){
+      const {data:users,error:userError}=await supabaseClient.from('users').select('id,name').in('id',creatorIds);
+      if(!userError)(users||[]).forEach(u=>{userNameMap[u.id]=u.name||'이름 미지정';});
+    }
+
+    const placeMap={};
+    (placeData||[]).forEach(p=>{placeMap[p.id]=p;});
+    const notifications=[
+      ...(placeData||[]).map(p=>({
+        type:'place',id:p.id,title:'새로운 장소 · '+(p.name||'이름 없는 장소'),
+        meta:(userNameMap[p.created_by]||'이름 미지정')+'님이 장소를 등록했습니다 · '+formatNotificationTime(p.created_at),
+        createdAt:p.created_at,placeId:p.id
+      })),
+      ...eventData.map(v=>{
+        const place=placeMap[v.place_id];
+        return {
+          type:'visit',id:v.id,title:'새로운 방문 기록 · '+(place?.name||'장소'),
+          meta:(userNameMap[v.created_by]||'이름 미지정')+'님이 방문 기록을 남겼습니다 · '+formatNotificationTime(v.created_at),
+          createdAt:v.created_at,placeId:v.place_id
+        };
+      })
+    ].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+
+    if(!notifications.length){
+      host.innerHTML='<div class="c-notification-empty">최근 7일 동안 새로운 알림이 없습니다.</div>';
+      return;
+    }
+    host.innerHTML='<div class="c-notification-list">'+notifications.map(n=>`
+      <button type="button" class="c-notification-item" data-notification-place="${escapeHtml(String(n.placeId))}">
+        <div class="c-notification-title">${escapeHtml(n.title)}</div>
+        <div class="c-notification-meta">${escapeHtml(n.meta)}</div>
+      </button>
+    `).join('')+'</div>';
+    host.querySelectorAll('.c-notification-item').forEach(item=>{
+      item.addEventListener('click',()=>{
+        const placeId=item.dataset.notificationPlace;
+        if(typeof window.closeCPanel==='function') window.closeCPanel();
+        if(placeId && typeof openDetail==='function') openDetail(placeId);
+      });
+    });
+  }catch(e){
+    console.error('Notification load error:',e);
+    host.innerHTML='<div class="c-notification-empty">알림을 불러오지 못했습니다.</div>';
+  }
+}
+
 async function loadPlacesForCurrentSpace(){
 
   if(!window.currentSpaceId){
@@ -5052,7 +5477,7 @@ async function loadPlacesForCurrentSpace(){
 
     .from('places')
 
-    .select('id,space_id,name,category,latitude,longitude,region,naver_map_url,memo,created_by,created_at,updated_at')
+    .select('id,space_id,name,category,address,latitude,longitude,region,naver_map_url,memo,created_by,created_at,updated_at')
 
     .eq('space_id',window.currentSpaceId)
 
@@ -5076,43 +5501,15 @@ async function loadPlacesForCurrentSpace(){
     if(!userError)(users||[]).forEach(u=>{userNameMap[u.id]=u.name||'이름 미지정';});
   }
 
-  // 현재 Space의 장소들에 대한 방문 기록 조회
+  // 2차-B: 방문 횟수는 댓글 수가 아니라 방문 이벤트 수
   const placeIds=placeData.map(p=>p.id);
-
-  let visitRecords=[];
-
+  let visitEvents=[];
   if(placeIds.length){
-
-    const {data:visitData,error:visitError}=await supabaseClient
-
-      .from('visit_records')
-
-      .select('id,place_id')
-
-      .in('place_id',placeIds);
-
-    if(visitError){
-
-      console.error('Visit record select error:',visitError);
-
-      alert('방문 기록 조회 실패: '+visitError.message);
-
-      return;
-
-    }
-
-    visitRecords=visitData||[];
-
+    const {data:eventData,error:eventError}=await supabaseClient.from('visit_events').select('id,place_id').in('place_id',placeIds);
+    if(eventError){console.error('Visit event count error:',eventError);alert('방문 이벤트 조회 실패: '+eventError.message+'\n\nSupabase에서 2차-B DB 설정 SQL을 먼저 실행해주세요.');return;}
+    visitEvents=eventData||[];
   }
-
-  // place_id별 방문 횟수 계산
-  const visitCountMap={};
-
-  visitRecords.forEach(v=>{
-
-    visitCountMap[v.place_id]=(visitCountMap[v.place_id]||0)+1;
-
-  });
+  const visitCountMap={};visitEvents.forEach(v=>{visitCountMap[v.place_id]=(visitCountMap[v.place_id]||0)+1;});
 
   places=placeData.map(p=>({
 
@@ -5121,6 +5518,8 @@ async function loadPlacesForCurrentSpace(){
     name:p.name,
 
     region:p.region||'',
+
+    address:p.address||'',
 
     cat:p.category||'기타',
 
@@ -5145,12 +5544,15 @@ async function loadPlacesForCurrentSpace(){
     longitude:p.longitude,
 
     space_id:p.space_id
+,
 
+    creatorName:userNameMap[p.created_by]||'이름 미지정'
   }));
 
   if(typeof render==='function') render();
 
   if(typeof syncMapPins==='function') syncMapPins();
+
 
 }
 async function getCurrentSpaceMember(){
@@ -5357,24 +5759,40 @@ async function loadSpaceMembers(){
 
   list.innerHTML='';
 
+  // 멤버 UUID 대신 사용자가 계정에서 입력한 이름을 표시합니다.
+  const memberIds=[...new Set(data.map(member=>member.user_id).filter(Boolean))];
+  const memberNameMap={};
+
+  if(memberIds.length){
+    const {data:users,error:userError}=await supabaseClient
+      .from('users')
+      .select('id,name')
+      .in('id',memberIds);
+
+    if(userError){
+      console.error('Member user name select error:',userError);
+    }else{
+      (users||[]).forEach(user=>{
+        memberNameMap[user.id]=user.name||'이름 미지정';
+      });
+    }
+  }
+
   data.forEach(member=>{
-
     const row=document.createElement('div');
-
     row.style.padding='10px 0';
-
     row.style.borderBottom='1px solid #eee';
 
     const role=member.role==='owner'?'Owner':'Member';
+    const name=memberNameMap[member.user_id]||'이름 미지정';
 
-row.innerHTML=
-  '<strong>'+role+'</strong>'+
-  '<div style="font-size:12px;color:#888;margin-top:3px">'+
-  escapeHtml(member.user_id)+
-  '</div>';
+    row.innerHTML=
+      '<strong>'+escapeHtml(name)+'</strong>'+
+      '<div style="font-size:12px;color:#888;margin-top:3px">'+
+      escapeHtml(role)+
+      '</div>';
 
     list.appendChild(row);
-
   });
 
 }
@@ -5435,7 +5853,12 @@ updateCategoryChipIcons();
 <div id="accountModal" class="overlay">
   <div class="modal">
     <h2>계정 관리</h2>
-    <p style="color:#666;line-height:1.6">현재 로그인한 계정에서 로그아웃하거나 회원탈퇴를 진행할 수 있습니다.</p>
+    <p style="color:#666;line-height:1.6">현재 로그인한 계정의 이름을 변경하거나 계정 관리를 할 수 있습니다.</p>
+    <div class="account-name-field">
+      <label for="accountNameInput">내 이름</label>
+      <input id="accountNameInput" type="text" maxlength="30" autocomplete="name" placeholder="Space에서 사용할 이름">
+      <button class="save account-name-save" type="button" onclick="saveMyName()">이름 저장</button>
+    </div>
     <div class="actions">
       <button class="cancel" onclick="closeAccountModal()">닫기</button>
       <button class="save" onclick="openPasswordChange()">비밀번호 변경</button>
@@ -5554,6 +5977,10 @@ updateCategoryChipIcons();
     <label>장소 이름</label><input id="editName">
     <label>카테고리</label>
     <select id="editCat"><option>카페</option><option>식당</option><option>놀거리</option></select>
+    <label>주소</label>
+    <input id="editAddress" placeholder="예: 서울 강남구 테헤란로 00">
+    <button type="button" class="location-check-btn" onclick="checkEditLocationFromAddress()">주소로 위치 다시 확인</button>
+    <div id="editLocationStatus" class="location-status">주소를 입력한 뒤 위치를 다시 확인할 수 있습니다.</div>
     <label>네이버 지도 URL</label><input id="editUrl" placeholder="네이버 지도에서 공유한 URL">
     <label>우리 메모</label><textarea id="editMemo" rows="5" placeholder="예약기간, 특이사항 등을 적어주세요."></textarea>
     
@@ -5565,6 +5992,11 @@ updateCategoryChipIcons();
   <div class="modal">
 
     <h2>방문 기록 추가</h2>
+
+    <div class="field">
+      <label for="visitEventSelect">기록할 방문</label>
+      <select id="visitEventSelect" class="visit-event-select"><option value="__new__">새로운 방문으로 기록</option></select>
+    </div>
 
     <div class="field">
       <label for="visitDateInput">방문 날짜</label>
@@ -5604,5 +6036,449 @@ updateCategoryChipIcons();
 
   </div>
 </div>
+
+<!-- 2차-C-1: 공유 패널 -->
+<button id="cPanelToggle" class="c-panel-toggle" type="button" aria-label="공유 패널 열기">‹</button>
+<aside id="cPanel" class="c-panel" aria-hidden="true">
+  <div class="c-panel-head">
+    <span>함께 보기</span>
+    <button id="cPanelClose" class="c-panel-close" type="button" aria-label="공유 패널 닫기">×</button>
+  </div>
+  <div class="c-panel-body">
+    <section class="c-panel-section">
+      <div class="c-panel-section-title">🔔 알림</div>
+      <div id="cNotificationContent" class="c-panel-section-content"><div class="c-notification-loading">알림을 불러오는 중...</div></div>
+    </section>
+    <section class="c-panel-section c-memo-section">
+      <div class="c-panel-section-title">📝 메모장</div>
+      <div class="c-panel-section-content c-memo-content">
+        <textarea id="cSharedMemoInput" class="c-shared-memo-input" placeholder="멤버들과 함께 사용할 메모를 적어주세요."></textarea>
+        <div class="c-shared-memo-actions">
+          <span id="cSharedMemoStatus" class="c-shared-memo-status"></span>
+          <button id="cSharedMemoSave" type="button" class="c-shared-memo-save">저장</button>
+        </div>
+      </div>
+    </section>
+    <section class="c-panel-section calendar">
+      <div class="c-panel-section-title">📅 달력</div>
+      <div class="c-panel-section-content">
+        <div id="cCalendar">
+          <div class="c-cal-head">
+            <button id="cCalPrev" type="button" aria-label="이전 달">‹</button>
+            <strong id="cCalTitle"></strong>
+            <button id="cCalNext" type="button" aria-label="다음 달">›</button>
+          </div>
+          <div class="c-cal-week">
+            <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+          </div>
+          <div id="cCalGrid" class="c-cal-grid"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</aside>
+<div id="cPanelBackdrop" class="c-panel-backdrop"></div>
+<script>
+(function(){
+  function initCPanel(){
+    const panel=document.getElementById('cPanel');
+    const toggle=document.getElementById('cPanelToggle');
+    const close=document.getElementById('cPanelClose');
+    const backdrop=document.getElementById('cPanelBackdrop');
+    if(!panel||!toggle||!close)return;
+    function setOpen(open){
+      panel.classList.toggle('open',open);
+      panel.setAttribute('aria-hidden',open?'false':'true');
+      toggle.textContent=open?'›':'‹';
+      toggle.setAttribute('aria-label',open?'공유 패널 닫기':'공유 패널 열기');
+      if(open && typeof loadNotifications==='function') loadNotifications();
+      if(open && typeof loadSharedMemo==='function') loadSharedMemo();
+      if(open && typeof window.loadCSharedCalendar==='function') window.loadCSharedCalendar();
+    }
+    window.closeCPanel=()=>setOpen(false);
+    toggle.addEventListener('click',()=>setOpen(!panel.classList.contains('open')));
+    close.addEventListener('click',()=>setOpen(false));
+    backdrop?.addEventListener('click',()=>setOpen(false));
+    document.getElementById('cSharedMemoSave')?.addEventListener('click',()=>saveSharedMemo());
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initCPanel);else initCPanel();
+})();
+</script>
+
+<!-- 2차-C-4: 날짜 선택 / 일정 입력·편집 -->
+<div id="cCalModal" class="c-cal-modal" aria-hidden="true">
+  <div class="c-cal-dialog">
+    <h3 id="cCalModalTitle">일정</h3>
+    <div id="cCalDetailDate" class="c-cal-detail-date"></div>
+
+    <div id="cCalDateView">
+      <div id="cCalDateEvents" class="c-cal-date-events"></div>
+      <button id="cCalDateAdd" class="c-cal-date-add" type="button">＋ 일정 추가</button>
+    </div>
+
+    <div id="cCalEditView" style="display:none">
+      <label for="cCalEventTitle">일정 제목</label>
+      <input id="cCalEventTitle" type="text" maxlength="80" placeholder="예: 성수동 저녁">
+      <div class="c-cal-dialog-actions">
+        <button id="cCalDelete" class="c-cal-delete" type="button" style="display:none">삭제</button>
+        <button id="cCalBack" class="c-cal-cancel" type="button">뒤로</button>
+        <button id="cCalSave" class="c-cal-save" type="button">저장</button>
+      </div>
+    </div>
+
+    <div id="cCalDateCloseWrap" class="c-cal-dialog-actions">
+      <button id="cCalCancel" class="c-cal-cancel" type="button">닫기</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  const state={
+    year:new Date().getFullYear(),
+    month:new Date().getMonth(),
+    events:[],
+    selectedDate:'',
+    editingId:null
+  };
+
+  function getClient(){
+    // 기존 앱의 supabaseClient는 window 속성이 아니라 전역 let 변수입니다.
+    // 따라서 window.supabaseClient만 확인하면 항상 null이 될 수 있습니다.
+    try{
+      if(typeof supabaseClient!=='undefined' && supabaseClient) return supabaseClient;
+    }catch(e){}
+    return window.supabaseClient||window.supabase||null;
+  }
+  function getSpaceId(){
+    return String(window.currentSpaceId||'').trim();
+  }
+  function getUserId(){
+    try{
+      if(typeof currentAuthUser!=='undefined' && currentAuthUser?.id) return currentAuthUser.id;
+    }catch(e){}
+    return window.currentUserId||window.currentUser?.id||'';
+  }
+  function dateKey(y,m,d){
+    return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  }
+  function todayKey(){
+    const d=new Date();
+    return dateKey(d.getFullYear(),d.getMonth(),d.getDate());
+  }
+  function escapeHtml(value){
+    return String(value??'').replace(/[&<>"']/g,m=>({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[m]));
+  }
+
+  function setView(mode){
+    const dateView=document.getElementById('cCalDateView');
+    const editView=document.getElementById('cCalEditView');
+    const closeWrap=document.getElementById('cCalDateCloseWrap');
+    const title=document.getElementById('cCalModalTitle');
+    const del=document.getElementById('cCalDelete');
+
+    if(mode==='edit'){
+      dateView.style.display='none';
+      editView.style.display='block';
+      closeWrap.style.display='none';
+      title.textContent=state.editingId?'일정 수정':'일정 추가';
+      del.style.display=state.editingId?'block':'none';
+    }else{
+      dateView.style.display='block';
+      editView.style.display='none';
+      closeWrap.style.display='flex';
+      title.textContent='일정';
+      del.style.display='none';
+    }
+  }
+
+  function openDateModal(date){
+    const modal=document.getElementById('cCalModal');
+    if(!modal)return;
+    state.selectedDate=date;
+    state.editingId=null;
+    document.getElementById('cCalDetailDate').textContent=date;
+    renderDateEvents();
+    setView('date');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+  }
+
+  function openEditModal(event){
+    const modal=document.getElementById('cCalModal');
+    if(!modal)return;
+    state.editingId=event?.id||null;
+    state.selectedDate=event?.event_date||state.selectedDate;
+    document.getElementById('cCalDetailDate').textContent=state.selectedDate;
+    document.getElementById('cCalEventTitle').value=event?.title||'';
+    setView('edit');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    setTimeout(()=>document.getElementById('cCalEventTitle')?.focus(),0);
+  }
+
+  function closeModal(){
+    const modal=document.getElementById('cCalModal');
+    if(!modal)return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    state.editingId=null;
+  }
+
+  function renderDateEvents(){
+    const wrap=document.getElementById('cCalDateEvents');
+    if(!wrap)return;
+    const dayEvents=state.events.filter(e=>e.event_date===state.selectedDate);
+    if(!dayEvents.length){
+      wrap.innerHTML='<div class="c-cal-date-empty">등록된 일정이 없습니다.</div>';
+      return;
+    }
+    wrap.innerHTML=dayEvents.map(e=>`
+      <button class="c-cal-date-event" type="button" data-event-id="${escapeHtml(e.id)}">
+        ${escapeHtml(e.title)}
+      </button>
+    `).join('');
+  }
+
+  function render(){
+    const title=document.getElementById('cCalTitle');
+    const grid=document.getElementById('cCalGrid');
+    if(!title||!grid)return;
+
+    title.textContent=`${state.year}년 ${state.month+1}월`;
+
+    const first=new Date(state.year,state.month,1).getDay();
+    const days=new Date(state.year,state.month+1,0).getDate();
+    const cells=[];
+
+    for(let i=0;i<first;i++){
+      cells.push('<div class="c-cal-cell c-cal-empty"></div>');
+    }
+
+    for(let d=1;d<=days;d++){
+      const key=dateKey(state.year,state.month,d);
+      const dayEvents=state.events.filter(e=>e.event_date===key);
+      const isToday=key===todayKey();
+
+      const eventsHtml=dayEvents.map(e=>{
+        let hash=0;
+        for(const ch of String(e.id||e.title||'')) hash=((hash<<5)-hash)+ch.charCodeAt(0);
+        const pastelIndex=Math.abs(hash)%8;
+        return `
+          <button class="c-cal-event cal-pastel-${pastelIndex}" type="button"
+            data-event-id="${escapeHtml(e.id)}"
+            title="${escapeHtml(e.title)}">${escapeHtml(e.title)}</button>
+        `;
+      }).join('');
+
+      cells.push(`
+        <div class="c-cal-cell${isToday?' today':''}" data-date="${key}">
+          <div class="c-cal-day">${d}</div>
+          ${eventsHtml}
+        </div>
+      `);
+    }
+
+    grid.innerHTML=cells.join('');
+  }
+
+  async function load(){
+    const client=getClient();
+    const spaceId=getSpaceId();
+
+    if(!client||!spaceId){
+      state.events=[];
+      render();
+      return;
+    }
+
+    const first=dateKey(state.year,state.month,1);
+    const last=dateKey(
+      state.year,
+      state.month,
+      new Date(state.year,state.month+1,0).getDate()
+    );
+
+    const {data,error}=await client
+      .from('space_calendar_events')
+      .select('id,space_id,event_date,title,created_at,updated_at')
+      .eq('space_id',spaceId)
+      .gte('event_date',first)
+      .lte('event_date',last)
+      .order('event_date',{ascending:true})
+      .order('created_at',{ascending:true});
+
+    if(error){
+      console.error('공유 달력 불러오기 실패:',error);
+      state.events=[];
+      render();
+      return;
+    }
+
+    state.events=data||[];
+    render();
+  }
+
+  async function save(){
+    const client=getClient();
+    const spaceId=getSpaceId();
+    const uid=getUserId();
+    const input=document.getElementById('cCalEventTitle');
+    const title=String(input?.value||'').trim();
+
+    if(!client||!spaceId){
+      alert('Space를 먼저 선택해 주세요.');
+      return;
+    }
+    if(!title){
+      alert('일정 제목을 입력해 주세요.');
+      input?.focus();
+      return;
+    }
+
+    const eventDate=state.selectedDate;
+    if(!eventDate){
+      alert('날짜를 확인해 주세요.');
+      return;
+    }
+
+    let result;
+
+    if(state.editingId){
+      result=await client
+        .from('space_calendar_events')
+        .update({
+          title,
+          updated_by:uid||null,
+          updated_at:new Date().toISOString()
+        })
+        .eq('id',state.editingId)
+        .eq('space_id',spaceId)
+        .select()
+        .single();
+    }else{
+      result=await client
+        .from('space_calendar_events')
+        .insert({
+          space_id:spaceId,
+          event_date:eventDate,
+          title,
+          created_by:uid||null,
+          updated_by:uid||null
+        })
+        .select()
+        .single();
+    }
+
+    if(result.error){
+      console.error(result.error);
+      alert('일정 저장에 실패했습니다.');
+      return;
+    }
+
+    await load();
+    openDateModal(eventDate);
+  }
+
+  async function remove(){
+    const client=getClient();
+    const spaceId=getSpaceId();
+
+    if(!client||!state.editingId||!spaceId)return;
+    if(!confirm('이 일정을 삭제할까요?'))return;
+
+    const {error}=await client
+      .from('space_calendar_events')
+      .delete()
+      .eq('id',state.editingId)
+      .eq('space_id',spaceId);
+
+    if(error){
+      console.error(error);
+      alert('일정 삭제에 실패했습니다.');
+      return;
+    }
+
+    const date=state.selectedDate;
+    await load();
+    openDateModal(date);
+  }
+
+  function bind(){
+    document.getElementById('cCalPrev')?.addEventListener('click',async()=>{
+      state.month--;
+      if(state.month<0){
+        state.month=11;
+        state.year--;
+      }
+      await load();
+    });
+
+    document.getElementById('cCalNext')?.addEventListener('click',async()=>{
+      state.month++;
+      if(state.month>11){
+        state.month=0;
+        state.year++;
+      }
+      await load();
+    });
+
+    document.getElementById('cCalDateAdd')?.addEventListener('click',()=>{
+      document.getElementById('cCalEventTitle').value='';
+      state.editingId=null;
+      setView('edit');
+      setTimeout(()=>document.getElementById('cCalEventTitle')?.focus(),0);
+    });
+
+    document.getElementById('cCalSave')?.addEventListener('click',save);
+    document.getElementById('cCalDelete')?.addEventListener('click',remove);
+
+    document.getElementById('cCalBack')?.addEventListener('click',()=>{
+      renderDateEvents();
+      setView('date');
+    });
+
+    document.getElementById('cCalCancel')?.addEventListener('click',closeModal);
+
+    document.getElementById('cCalModal')?.addEventListener('click',e=>{
+      if(e.target.id==='cCalModal')closeModal();
+    });
+
+    document.getElementById('cCalDateEvents')?.addEventListener('click',e=>{
+      const btn=e.target.closest('.c-cal-date-event');
+      if(!btn)return;
+      const event=state.events.find(x=>String(x.id)===String(btn.dataset.eventId));
+      if(event)openEditModal(event);
+    });
+
+    document.getElementById('cCalGrid')?.addEventListener('click',e=>{
+      const eventBtn=e.target.closest('.c-cal-event');
+      if(eventBtn){
+        // 일정 제목을 눌러도 해당 날짜의 일정 목록 팝업을 엽니다.
+        const cell=eventBtn.closest('.c-cal-cell');
+        if(cell?.dataset.date)openDateModal(cell.dataset.date);
+        return;
+      }
+
+      const cell=e.target.closest('.c-cal-cell');
+      if(cell?.dataset.date)openDateModal(cell.dataset.date);
+    });
+  }
+
+  window.loadCSharedCalendar=load;
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',()=>{
+      bind();
+      render();
+    });
+  }else{
+    bind();
+    render();
+  }
+})();
+</script>
+
 </body>
 </html>
