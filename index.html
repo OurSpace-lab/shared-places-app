@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>우리의 장소 아카이브 - v2.0</title>
+<title>우리의 장소 아카이브 - v2.1</title>
 <style>
 *{box-sizing:border-box} body{margin:0;font-family:Arial,"Noto Sans KR",sans-serif;background:#f6f7f9;color:#20242b}
 button,input,select{font:inherit} button{cursor:pointer;border:0}
@@ -363,7 +363,12 @@ select{padding:12px 14px;border:1px solid #ddd;border-radius:11px;background:#ff
   transform:translateY(-1px);
   box-shadow:0 6px 14px rgba(89,103,217,.22);
 }
-.detail{position:relative;display:none}.back{background:#f1f2f4;padding:9px 12px;border-radius:10px;margin-bottom:14px}.hero{height:180px;border-radius:16px;background:linear-gradient(135deg,#e7dfd5,#cfc5b8);display:flex;align-items:center;justify-content:center;font-size:60px}.detail h1{margin-bottom:5px}.detail-section{border-top:1px solid #eee;padding:16px 0}.detail-section summary{font-weight:800;cursor:pointer}.detail-body{padding-top:12px;color:#555;line-height:1.6}.naver{display:inline-block;margin-top:12px;padding:11px 14px;border-radius:10px;background:#18a957;color:#fff;text-decoration:none;font-weight:700}
+.detail{position:relative;display:none}.back{background:#f1f2f4;padding:9px 12px;border-radius:10px;margin-bottom:14px}.hero{height:180px;border-radius:16px;background:linear-gradient(135deg,#e7dfd5,#cfc5b8);display:flex;align-items:center;justify-content:center;font-size:60px}
+.detail-cat-cafe{background:#FFE8CF !important;}
+.detail-cat-food{background:#FCE7F3 !important;}
+.detail-cat-fun{background:#E5F7EC !important;}
+.detail-cat-food .place-category-svg path{stroke:#D946EF !important;}
+.detail h1{margin-bottom:5px}.detail-section{border-top:1px solid #eee;padding:16px 0}.detail-section summary{font-weight:800;cursor:pointer}.detail-body{padding-top:12px;color:#555;line-height:1.6}.naver{display:inline-block;margin-top:12px;padding:11px 14px;border-radius:10px;background:#18a957;color:#fff;text-decoration:none;font-weight:700}
 @media(max-width:760px){.app{margin:0;border-radius:0}.list{grid-template-columns:1fr}.map{height:500px}}
 
 .detail-head{display:flex;align-items:center;gap:16px;margin-bottom:14px}.detail-title{flex:1}.detail-title h1{margin:0 0 6px}.edit-btn{border:1px solid #ddd;background:#fff;border-radius:10px;padding:9px 13px;cursor:pointer}.detail-section{background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:16px;margin:12px 0}.section-title{font-weight:700;margin-bottom:9px}.detail-body{line-height:1.65}.memo-display{white-space:pre-wrap}.visit-count{font-size:20px;font-weight:700;margin-bottom:5px}.muted{color:#888;font-size:13px}
@@ -373,7 +378,7 @@ select{padding:12px 14px;border:1px solid #ddd;border-radius:11px;background:#ff
   line-height:1.5;
   margin-top:2px;
 }
-/* v1.6 visual tuning */
+/* v2.1 visual tuning */
 .detail .hero{
   width:112px !important;
   height:112px !important;
@@ -526,9 +531,10 @@ select{padding:12px 14px;border:1px solid #ddd;border-radius:11px;background:#ff
 
 
 /* 2차-C-4: 공유 달력 */
-.c-cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
-.c-cal-head strong{font-size:15px}
+.c-cal-head{display:grid;grid-template-columns:30px 44px minmax(0,1fr) 30px;align-items:center;gap:6px;margin-bottom:10px}
+.c-cal-head strong{font-size:15px;text-align:center;min-width:0;white-space:nowrap}
 .c-cal-head button{width:30px;height:30px;border:1px solid #e4e7ee;border-radius:8px;background:#fff;color:#333;font-size:20px;line-height:1}
+.c-cal-head .c-cal-today{width:44px;font-size:11px;font-weight:700;color:#5967d9}
 .c-cal-week,.c-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
 .c-cal-week{margin-bottom:4px}
 .c-cal-week span{font-size:11px;text-align:center;color:#777;padding:4px 0}
@@ -566,10 +572,10 @@ select{padding:12px 14px;border:1px solid #ddd;border-radius:11px;background:#ff
 .c-cal-date-empty{font-size:13px;color:#888;padding:8px 0 12px}
 .c-cal-date-add{width:100%;height:40px;border:0;border-radius:9px;background:#f1f2f4;color:#333;font-weight:700;cursor:pointer}
 
-@media(max-width:760px){.c-cal-cell{min-height:54px;padding:4px 3px}.c-cal-event{font-size:10px;padding:4px}.c-cal-add{font-size:9px}}
+@media(max-width:760px){.c-cal-head{grid-template-columns:30px 42px minmax(0,1fr) 30px;gap:4px}.c-cal-head strong{font-size:14px}.c-cal-head .c-cal-today{width:42px;font-size:10px}.c-cal-cell{min-height:54px;padding:4px 3px}.c-cal-event{font-size:10px;padding:4px}.c-cal-add{font-size:9px}}
 
 /* 2차-C-1: 오른쪽 공유 패널 */
-.c-panel-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:9500;width:38px;height:72px;border-radius:12px 0 0 12px;background:#20242b;color:#fff;font-size:20px;box-shadow:0 6px 18px rgba(15,23,42,.16)}
+.c-panel-toggle{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:9501;width:38px;height:72px;border-radius:12px 0 0 12px;background:#20242b;color:#fff;font-size:20px;box-shadow:0 6px 18px rgba(15,23,42,.16);transition:none}.c-panel-toggle:hover,.c-panel-toggle:focus,.c-panel-toggle:active{transform:translateY(-50%);box-shadow:0 6px 18px rgba(15,23,42,.16)}
 .c-panel{position:fixed;top:0;right:0;width:min(520px,50vw);height:100dvh;background:#fff;z-index:9400;box-shadow:-12px 0 35px rgba(15,23,42,.14);transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column;border-left:1px solid #e5e8f0}
 .c-panel.open{transform:translateX(0)}
 .c-panel-head{height:64px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 18px;border-bottom:1px solid #eee;font-weight:800}
@@ -604,6 +610,24 @@ select{padding:12px 14px;border:1px solid #ddd;border-radius:11px;background:#ff
 .c-shared-memo-status{font-size:11px;color:#8a9099;min-height:16px}
 .c-shared-memo-save{border:0;border-radius:9px;padding:8px 14px;background:#20242b;color:#fff;font-weight:700;cursor:pointer}
 .c-shared-memo-save:disabled{opacity:.55;cursor:default}
+
+/* 최종 카테고리 스타일 보정 */
+.place-thumb.cat-food{
+  background:#FCE7F3!important;
+}
+.detail-cat-food,
+.hero.detail-cat-food{
+  background:#FCE7F3 !important;
+}
+.detail-cat-food .place-category-svg path,
+.hero.detail-cat-food .place-category-svg path{
+  stroke:#D946EF !important;
+}
+.place-thumb.cat-fun .place-category-svg path,
+.category-chip-svg[data-category="놀거리"] path{
+  stroke:#16A34A !important;
+}
+
 </style>
 <script>
 const SUPABASE_URL = 'https://lzzrnykqbadyozuipntp.supabase.co';
@@ -3006,7 +3030,7 @@ header .add:active{
 }
 
 .place-thumb.cat-food{
-  background:#E7F1FF !important;
+  background:#FCE7F3!important;
 }
 
 .place-thumb.cat-fun{
@@ -3472,7 +3496,7 @@ body{overflow-x:hidden;overflow-y:auto;}
 .visit-comment-author{font-size:12px;font-weight:800;color:#374151;margin-bottom:3px;}
 .visit-comment-text{font-size:13px;color:#5f6877;line-height:1.6;white-space:pre-wrap;word-break:break-word;}
 .visit-comment-actions{display:flex;gap:6px;margin-top:6px;}
-.visit-comment-actions button{padding:5px 8px;border:1px solid #e1e4eb;border-radius:7px;background:#fff;font-size:11px;color:#667085;}
+.visit-event-delete{border:0;background:none;color:#b14b3b;font-size:11px;font-weight:600;cursor:pointer;margin-left:6px;padding:0}.visit-comment-actions button{padding:5px 8px;border:1px solid #e1e4eb;border-radius:7px;background:#fff;font-size:11px;color:#667085;}
 .visit-event-add{margin-top:9px;padding:7px 10px;border:1px solid #d9def3;border-radius:8px;background:#f7f8ff;color:#5967d9;font-size:11px;font-weight:700;cursor:pointer;}
 .visit-event-select{width:100%;box-sizing:border-box;height:42px;border:1px solid #dfe3ec;border-radius:11px;padding:0 10px;background:#fff;font:inherit;color:#374151;}
 .memo-display{padding-left:0!important;margin-left:0!important;text-indent:0!important;}
@@ -3497,12 +3521,34 @@ body{overflow-x:hidden;overflow-y:auto;}
 }
 @media(max-width:430px){#categoryChips .category-chip-icon{display:none!important;}}
 @media(max-width:390px){.place-card .thumb{width:72px!important;min-width:72px!important;height:72px!important;}.place-card .info{padding-left:2px;}}
+
+/* v2.1 final category colors */
+.place-thumb.cat-food{background:#FCE7F3 !important;}
+.detail-cat-food,.hero.detail-cat-food{background:#FCE7F3 !important;}
+
+/* 상세 페이지 카테고리 배경 - 장소 카드와 동일 */
+.detail .hero.detail-cat-cafe,
+.detail-modal-card .hero.detail-cat-cafe,
+.hero.detail-cat-cafe{
+  background:#FFE8CF !important;
+}
+.detail .hero.detail-cat-food,
+.detail-modal-card .hero.detail-cat-food,
+.hero.detail-cat-food{
+  background:#FCE7F3 !important;
+}
+.detail .hero.detail-cat-fun,
+.detail-modal-card .hero.detail-cat-fun,
+.hero.detail-cat-fun{
+  background:#E5F7EC !important;
+}
+
 </style>
 </head>
 <body class='auth-locked'>
 <div class="auth-screen" id="authScreen">
   <div class="auth-card">
-    <div class="auth-logo">Our Place <span class="app-version">v2.0</span></div>
+    <div class="auth-logo">Our Place <span class="app-version">v2.1</span></div>
     <div class="auth-sub">함께 발견하고, 함께 경험한 장소를 기록해요.</div>
     <div id="supabaseStatus" style="font-size:12px;color:#777;margin-bottom:14px">Supabase 연결 중...</div>
     <label for="authEmail">이메일</label>
@@ -3883,7 +3929,7 @@ function updateRegionOptions(){
   regions.forEach(region=>{
     const option=document.createElement('option');
     option.value=region;
-    option.textContent=region.replace(/구$/,'');
+    option.textContent=/^서울(?:\s|$)/.test(region) ? region : (region.startsWith('서울') ? region : (region.endsWith('구') && !region.includes(' ') ? '서울 '+region : region));
     select.appendChild(option);
   });
 
@@ -3950,216 +3996,18 @@ function toggleGoPlaces(btn){
 function setCatSafe(catValue){cat=catValue;currentPage=1;render();}
 
 function getPlaceCategoryIcon(cat){
-
-  /* =========================
-     카페
-     ========================= */
-  if(cat === '카페'){
-    return `
-      <svg
-        class="place-category-svg"
-        viewBox="0 0 64 64"
-        aria-hidden="true"
-      >
-
-        
-        <defs>
-          <linearGradient
-            id="placeCafeGradient"
-            x1="10"
-            y1="10"
-            x2="54"
-            y2="54"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0%" stop-color="#FFB347"/>
-            <stop offset="100%" stop-color="#F07A00"/>
-          </linearGradient>
-        </defs>
-
-        <!-- 김 -->
-        <path
-          d="M25 15 C22 12 27 9 25 6"
-          fill="none"
-          stroke="url(#placeCafeGradient)"
-          stroke-width="2.8"
-          stroke-linecap="round"
-        />
-
-        <path
-          d="M32 15 C29 12 34 9 32 6"
-          fill="none"
-          stroke="url(#placeCafeGradient)"
-          stroke-width="2.8"
-          stroke-linecap="round"
-        />
-
-        <path
-          d="M39 15 C36 12 41 9 39 6"
-          fill="none"
-          stroke="url(#placeCafeGradient)"
-          stroke-width="2.8"
-          stroke-linecap="round"
-        />
-
-        <!-- 컵 -->
-        <path
-          d="
-            M15 21
-            H44
-            V34
-            C44 42 38 47 30 47
-            C22 47 15 42 15 34
-            Z
-          "
-          fill="none"
-          stroke="url(#placeCafeGradient)"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-
-        <!-- 손잡이 -->
-        <path
-          d="
-            M44 25
-            H49
-            C53 25 55 28 55 31
-            C55 35 53 38 49 38
-            H44
-          "
-          fill="none"
-          stroke="url(#placeCafeGradient)"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-
-        <!-- 받침 -->
-        <ellipse
-          cx="30"
-          cy="50"
-          rx="20"
-          ry="4"
-          fill="none"
-          stroke="url(#placeCafeGradient)"
-          stroke-width="3"
-        />
-
-      </svg>
-    `;
-  }
-
-
-  /* =========================
-     식당
-     ========================= */
-  if(cat === '식당'){
-    return `
-      <svg
-        class="place-category-svg"
-        viewBox="0 0 64 64"
-        aria-hidden="true"
-      >
-
-       
-
-        <defs>
-          <linearGradient
-            id="placeFoodGradient"
-            x1="8"
-            y1="8"
-            x2="56"
-            y2="56"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop offset="0%" stop-color="#63A4FF"/>
-            <stop offset="55%" stop-color="#2878E8"/>
-            <stop offset="100%" stop-color="#1657C7"/>
-          </linearGradient>
-        </defs>
-
-        <!-- 왼쪽 포크 -->
-        <path
-          d="
-            M9 9
-            V22
-            C9 25 11 27 14 27
-            V50
-            C14 53 15 55 17 55
-            C19 55 20 53 20 50
-            V27
-            C23 27 25 25 25 22
-            V9
-
-            M14 9
-            V20
-
-            M20 9
-            V20
-          "
-          fill="none"
-          stroke="url(#placeFoodGradient)"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-
-        <!-- 가운데 접시 -->
-        <circle
-          cx="32"
-          cy="32"
-          r="16"
-          fill="none"
-          stroke="url(#placeFoodGradient)"
-          stroke-width="3"
-        />
-
-        <!-- 접시 안쪽 -->
-        <circle
-          cx="32"
-          cy="32"
-          r="10.5"
-          fill="none"
-          stroke="url(#placeFoodGradient)"
-          stroke-width="2.6"
-        />
-
-        <!-- 오른쪽 나이프 -->
-        <path
-          d="
-            M51 9
-            C47 13 46 18 46 23
-            V28
-            C46 30 48 31 50 31
-            H51
-            V50
-            C51 53 52 55 54 55
-            C56 55 57 53 57 50
-            V9
-
-            C57 7 55 7 54 9
-            C52 12 51 16 51 20
-            V27
-          "
-          fill="none"
-          stroke="url(#placeFoodGradient)"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-
-      </svg>
-    `;
-  }
-
-
-  /* =========================
-     놀거리
-     ========================= */
-  if(cat === '놀거리'){
-    return `
-      <svg
+  const icons={
+    '카페':`<svg class="place-category-svg" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M25 15 C22 12 27 9 25 6M32 15 C29 12 34 9 32 6M39 15 C36 12 41 9 39 6" fill="none" stroke="#f59e0b" stroke-width="2.8" stroke-linecap="round"/>
+      <path d="M15 21H44V34C44 42 38 47 30 47C22 47 15 42 15 34Z" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M44 25H49C53 25 55 28 55 31C55 35 53 38 49 38H44" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+      <path d="M14 51H48" fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+    </svg>`,
+    '식당':`<svg class="place-category-svg" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M18 9V28M13 9V28M23 9V28M13 28C13 34 18 36 18 36V54M23 9V54" fill="none" stroke="#D946EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M40 9V54M40 9C49 10 53 16 53 24C53 31 49 35 40 35" fill="none" stroke="#D946EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`,
+    '놀거리':`<svg
         class="place-category-svg"
         viewBox="0 0 64 64"
         aria-hidden="true"
@@ -4254,55 +4102,9 @@ function getPlaceCategoryIcon(cat){
           stroke-linecap="round"
         />
 
-      </svg>
-    `;
-  }
-
-
-  /* =========================
-     기본
-     ========================= */
-  return `
-    <svg
-      class="place-category-svg"
-      viewBox="0 0 64 64"
-      aria-hidden="true"
-    >
-      <rect
-        x="2"
-        y="2"
-        width="60"
-        height="60"
-        rx="14"
-        fill="#F1F2F4"
-      />
-
-      <path
-        d="
-          M32 55
-          C29 51 15 40 15 28
-          C15 18 22 10 32 10
-          C42 10 49 18 49 28
-          C49 40 35 51 32 55
-          Z
-        "
-        fill="none"
-        stroke="#6B7280"
-        stroke-width="3"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-
-      <circle
-        cx="32"
-        cy="28"
-        r="6"
-        fill="none"
-        stroke="#6B7280"
-        stroke-width="3"
-      />
-    </svg>
-  `;
+      </svg>`
+  };
+  return icons[cat]||`<svg class="place-category-svg" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="18" fill="none" stroke="#6b7280" stroke-width="3"/><circle cx="32" cy="32" r="3" fill="#6b7280"/></svg>`;
 }
 function updateCategoryChipIcons(){
 
@@ -4588,6 +4390,24 @@ async function saveEditedPlace(){
 
   openDetail(data.id);
 }
+async function deletePlace(id){
+  if(!window.currentSpaceId){
+    alert('현재 Space를 확인할 수 없습니다.');
+    return;
+  }
+  const p=places.find(x=>String(x.id)===String(id));
+  if(!p) return;
+  if(!confirm(`"${p.name}" 장소를 삭제하시겠습니까?\n삭제하면 되돌릴 수 없습니다.`)) return;
+  const {error}=await supabaseClient.from('places').delete().eq('id',id).eq('space_id',window.currentSpaceId);
+  if(error){alert('장소 삭제 실패: '+error.message);console.error('Place delete error:',error);return;}
+  await loadPlacesForCurrentSpace();
+  if(typeof loadNotifications==='function') loadNotifications();
+  closeDetail();
+  showView('list');
+  if(typeof render==='function') render();
+  if(typeof syncMapPins==='function') syncMapPins();
+}
+
 async function openDetail(id){
 
   console.log('상세페이지 클릭 ID:', id);
@@ -4644,13 +4464,13 @@ async function openDetail(id){
   const visitHtml=visitEvents.length ? visitEvents.map(v=>{
     const cs=commentsByEvent[v.id]||[];
     const ch=cs.length ? cs.map(c=>`<div class="visit-comment"><div class="visit-comment-author">${escapeHtml(userNameMap[c.created_by]||'이름 미지정')}</div><div class="visit-comment-text">${escapeHtml(c.comment||'작성된 기록이 없습니다.')}</div>${String(c.created_by||'')===String(currentAuthUser?.id||'')?`<div class="visit-comment-actions"><button type="button" onclick="editVisitComment('${c.id}')">편집</button><button type="button" onclick="deleteVisitComment('${c.id}')">삭제</button></div>`:''}</div>`).join('') : '<div class="visit-comment-text">아직 이 방문의 기록이 없습니다.</div>';
-    return `<div class="visit-event" data-visit-event-id="${v.id}"><div class="visit-event-head"><div class="visit-event-date">${escapeHtml(v.visit_date||'날짜 없음')}</div><div class="visit-event-owner">방문 등록 · ${escapeHtml(userNameMap[v.created_by]||'이름 미지정')}</div></div><div class="visit-comment-list">${ch}</div><button class="visit-event-add" type="button" onclick="addVisitComment('${v.id}')">＋ 내 기록 추가</button></div>`;
+    return `<div class="visit-event" data-visit-event-id="${v.id}"><div class="visit-event-head"><div class="visit-event-date">${escapeHtml(v.visit_date||'날짜 없음')}</div><div class="visit-event-owner">방문 등록 · ${escapeHtml(userNameMap[v.created_by]||'이름 미지정')}${String(v.created_by||'')===String(currentAuthUser?.id||'')?` <button type="button" class="visit-event-delete" onclick="deleteVisitEvent('${v.id}')">방문 삭제</button>`:''}</div></div><div class="visit-comment-list">${ch}</div><button class="visit-event-add" type="button" onclick="addVisitComment('${v.id}')">＋ 내 기록 추가</button></div>`;
   }).join('') : '<div class="visit-review">아직 방문 기록이 없습니다.</div>';
   const visitCount=visitEvents.length;
   detail.innerHTML=`
     <div class="detail-modal-card">
     <button class="back" id="detailBack">← ${detailReturnView==='map'?'지도':'리스트'}로 돌아가기</button>
-    <div class="detail-head"><div><div class="hero">${getPlaceCategoryIcon(p.cat)}</div></div><div class="detail-title"><h1>${escapeHtml(p.name)}</h1><div class="meta">${escapeHtml(p.region||'지역 미지정')} · ${escapeHtml(p.cat||'기타')} · ${escapeHtml(p.creatorName||'이름 미지정')}</div></div><div class="detail-actions"><button class="edit-btn" id="editPlaceBtn">${ICONS.edit} 편집</button><button class="delete-btn" id="deletePlaceBtn">${ICONS.delete} 삭제</button></div></div>
+    <div class="detail-head"><div><div class="hero ${p.cat==='카페'?'detail-cat-cafe':p.cat==='식당'?'detail-cat-food':p.cat==='놀거리'?'detail-cat-fun':''}" style="background:${p.cat==='식당'?'#FCE7F3':p.cat==='카페'?'#FFE8CF':p.cat==='놀거리'?'#E5F7EC':'#F1F2F4'};">${getPlaceCategoryIcon(p.cat)}</div></div><div class="detail-title"><h1>${escapeHtml(p.name)}</h1><div class="meta">${escapeHtml(p.region||'지역 미지정')} · ${escapeHtml(p.cat||'기타')} · ${escapeHtml(p.creatorName||'이름 미지정')}</div></div><div class="detail-actions"><button class="edit-btn" id="editPlaceBtn">${ICONS.edit} 편집</button><button class="delete-btn" id="deletePlaceBtn">${ICONS.delete} 삭제</button></div></div>
     ${getNaverPlaceUrl(p)?`<a class="naver" href="${escapeHtml(getNaverPlaceUrl(p))}" target="_blank" rel="noopener noreferrer">${ICONS.map} 네이버 지도에서 보기</a>`:`<button class="naver naver-missing" type="button" onclick="openEditPlace('${p.id}')">${ICONS.map} 네이버 지도 URL 추가</button>`}
     <div class="detail-section"><div class="section-title">${ICONS.location} 장소 정보</div><div class="detail-body">${p.address?escapeHtml(p.address)+'<br>':'주소 미등록<br>'}지역 · ${escapeHtml(p.region||'지역 미지정')}</div></div>
     <div class="detail-section"><div class="section-title">${ICONS.note} 우리 메모</div><div class="detail-body memo-display">${escapeHtml(p.note||'아직 메모가 없습니다.')}</div></div>
@@ -4742,7 +4562,22 @@ async function getVisitEvent(eventId){const {data,error}=await supabaseClient.fr
 async function addVisitComment(eventId){const event=await getVisitEvent(eventId);if(!event)return;currentVisitPlaceId=event.place_id;currentVisitEventId=event.id;currentVisitEditId=null;currentVisitMode='comment';const modal=document.getElementById('visitModal'),title=document.querySelector('#visitModal h2'),saveBtn=document.getElementById('visitSaveBtn'),dateInput=document.getElementById('visitDateInput'),reviewInput=document.getElementById('visitReviewInput'),select=document.getElementById('visitEventSelect');if(title)title.textContent='방문 기록 추가';if(saveBtn)saveBtn.textContent='저장';if(dateInput)dateInput.value=event.visit_date||'';if(select){select.style.display='none';select.value=event.id;}if(reviewInput)reviewInput.value='';if(modal)modal.style.display='flex';setTimeout(()=>reviewInput?.focus(),50);}
 async function saveVisitRecord(){if(!currentVisitPlaceId)return;const dateInput=document.getElementById('visitDateInput'),reviewInput=document.getElementById('visitReviewInput'),select=document.getElementById('visitEventSelect');const visitDate=dateInput?.value,review=reviewInput?.value.trim()||null;if(!visitDate){alert('방문 날짜를 입력해주세요.');return;}const {data:userData,error:userError}=await supabaseClient.auth.getUser();if(userError||!userData?.user){alert('로그인 정보를 확인할 수 없습니다.');return;}const uid=userData.user.id;if(currentVisitEditId){const {data,error}=await supabaseClient.from('visit_comments').update({comment:review}).eq('id',currentVisitEditId).eq('created_by',uid).select('visit_event_id').single();if(error){alert('방문 기록 수정 실패: '+error.message);return;}const event=await getVisitEvent(data.visit_event_id);closeVisitModal();if(event)await openDetail(event.place_id);return;}let eventId=currentVisitEventId;if(currentVisitMode==='new')eventId=select?.value&&select.value!=='__new__'?select.value:null;if(!eventId){const {data:event,error}=await supabaseClient.from('visit_events').insert({place_id:currentVisitPlaceId,visit_date:visitDate,created_by:uid}).select('id').single();if(error){alert('방문 이벤트 저장 실패: '+error.message);return;}eventId=event.id;}const {error:commentError}=await supabaseClient.from('visit_comments').insert({visit_event_id:eventId,created_by:uid,comment:review});if(commentError){alert('방문 기록 저장 실패: '+commentError.message);return;}const placeId=currentVisitPlaceId;closeVisitModal();await loadPlacesForCurrentSpace();if(typeof loadNotifications==='function') loadNotifications();await openDetail(placeId);}
 async function editVisitComment(commentId){const {data,error}=await supabaseClient.from('visit_comments').select('id,visit_event_id,created_by,comment').eq('id',commentId).single();if(error){alert('방문 기록 조회 실패: '+error.message);return;}const {data:userData}=await supabaseClient.auth.getUser();if(String(data.created_by)!==String(userData?.user?.id)){alert('본인이 작성한 기록만 편집할 수 있습니다.');return;}const event=await getVisitEvent(data.visit_event_id);if(!event)return;currentVisitPlaceId=event.place_id;currentVisitEventId=event.id;currentVisitEditId=data.id;currentVisitMode='edit';const modal=document.getElementById('visitModal'),title=document.querySelector('#visitModal h2'),saveBtn=document.getElementById('visitSaveBtn'),dateInput=document.getElementById('visitDateInput'),reviewInput=document.getElementById('visitReviewInput'),select=document.getElementById('visitEventSelect');if(title)title.textContent='방문 기록 편집';if(saveBtn)saveBtn.textContent='수정 저장';if(dateInput)dateInput.value=event.visit_date||'';if(reviewInput)reviewInput.value=data.comment||'';if(select)select.style.display='none';if(modal)modal.style.display='flex';setTimeout(()=>reviewInput?.focus(),50);}
-async function deleteVisitComment(commentId){if(!confirm('이 방문 기록을 삭제할까요?'))return;const {data,error}=await supabaseClient.from('visit_comments').delete().eq('id',commentId).select('visit_event_id').single();if(error){alert('방문 기록 삭제 실패: '+error.message);return;}const event=await getVisitEvent(data.visit_event_id);if(event)await openDetail(event.place_id);}
+async function deleteVisitComment(commentId){if(!confirm('이 방문 기록을 삭제할까요?'))return;const {data,error}=await supabaseClient.from('visit_comments').delete().eq('id',commentId).select('visit_event_id').single();if(error){alert('방문 기록 삭제 실패: '+error.message);return;}const event=await getVisitEvent(data.visit_event_id);if(typeof loadNotifications==='function') loadNotifications();if(event)await openDetail(event.place_id);}
+async function deleteVisitEvent(eventId){
+  if(!eventId) return;
+  if(!confirm('이 방문 기록을 삭제할까요?\n\n방문 횟수가 1회 차감되며, 이 방문에 작성된 모든 댓글도 함께 삭제됩니다.\n삭제한 내용은 되돌릴 수 없습니다.')) return;
+  const {data:event,error:eventError}=await supabaseClient.from('visit_events').select('id,place_id,created_by').eq('id',eventId).single();
+  if(eventError||!event){alert('방문 기록을 찾을 수 없습니다.');return;}
+  const {data:userData,error:userError}=await supabaseClient.auth.getUser();
+  if(userError||!userData?.user){alert('로그인 정보를 확인할 수 없습니다.');return;}
+  if(String(event.created_by)!==String(userData.user.id)){alert('방문을 등록한 멤버만 이 방문 자체를 삭제할 수 있습니다.');return;}
+  const {error}=await supabaseClient.from('visit_events').delete().eq('id',eventId).eq('created_by',userData.user.id);
+  if(error){alert('방문 기록 삭제 실패: '+error.message);console.error('Visit event delete error:',error);return;}
+  await loadPlacesForCurrentSpace();
+  if(typeof loadNotifications==='function') loadNotifications();
+  await openDetail(event.place_id);
+}
+
 async function editVisitRecord(id){return editVisitComment(id);}
 async function deleteVisitRecord(id){return deleteVisitComment(id);}
 
@@ -4800,21 +4635,23 @@ function addMapPin(p){
   if(p.latitude==null || p.longitude==null) return;
 
   const colors={
-    카페:'#f59e0b',
-    식당:'#3b82f6',
-    놀거리:'#22c55e'
+    카페:'#ff9f1c',
+    식당:'#D946EF',
+    놀거리:'#16a34a'
   };
 
   const baseColor=colors[p.cat]||'#6b7280';
   const visits=Math.min(3,Math.max(0,Number(p.visits)||0));
 
-  // 방문 횟수가 늘어날수록 색의 채도는 그대로 유지하고 명도만 낮춥니다.
-  let lightnessFactor=1;
-  if(visits===1) lightnessFactor=.94;
-  else if(visits===2) lightnessFactor=.86;
-  else if(visits>=3) lightnessFactor=.76;
-
-  const color=hslColor(baseColor,lightnessFactor);
+  // 방문 횟수가 늘어날수록 색을 어둡게 만들지 않고, 밝기와 채도를 살짝 조절합니다.
+  // 3회 이상도 카테고리 고유 색상이 유지되도록 합니다.
+  const hsl=hexToHsl(baseColor);
+  let saturation=hsl.s;
+  let lightness=hsl.l;
+  if(visits===1){ saturation=Math.min(100,hsl.s+3); lightness=Math.min(72,hsl.l+4); }
+  else if(visits===2){ saturation=Math.min(100,hsl.s+6); lightness=Math.min(70,hsl.l+2); }
+  else if(visits>=3){ saturation=Math.min(100,hsl.s+8); lightness=Math.min(68,hsl.l+1); }
+  const color=`hsl(${Math.round(hsl.h)}, ${Math.round(saturation)}%, ${Math.round(lightness)}%)`;
 
   // 3회로 갈수록 전구처럼 주변이 환해지는 느낌의 빛을 추가합니다.
   let glow='0 2px 6px rgba(0,0,0,.25)';
@@ -5393,70 +5230,56 @@ async function loadNotifications(){
   host.innerHTML='<div class="c-notification-loading">알림을 불러오는 중...</div>';
   const since=new Date(Date.now()-7*24*60*60*1000).toISOString();
   try{
-    const {data:placeData,error:placeError}=await supabaseClient
-      .from('places')
-      .select('id,name,created_by,created_at')
-      .eq('space_id',window.currentSpaceId)
-      .gte('created_at',since)
-      .order('created_at',{ascending:false});
+    const {data:placeData,error:placeError}=await supabaseClient.from('places').select('id,name,created_by,created_at').eq('space_id',window.currentSpaceId).gte('created_at',since).order('created_at',{ascending:false});
     if(placeError) throw placeError;
-
     const placeIds=(placeData||[]).map(p=>p.id);
     let eventData=[];
     if(placeIds.length){
-      const {data,error}=await supabaseClient
-        .from('visit_events')
-        .select('id,place_id,visit_date,created_by,created_at')
-        .in('place_id',placeIds)
-        .gte('created_at',since)
-        .order('created_at',{ascending:false});
+      const {data,error}=await supabaseClient.from('visit_events').select('id,place_id,visit_date,created_by,created_at').in('place_id',placeIds).gte('created_at',since).order('created_at',{ascending:false});
       if(error) throw error;
       eventData=data||[];
     }
-
-    const creatorIds=[...new Set([...(placeData||[]).map(p=>p.created_by),...eventData.map(v=>v.created_by)].filter(Boolean))];
+    let commentData=[];
+    const eventIds=(eventData||[]).map(v=>v.id);
+    if(eventIds.length){
+      const {data,error}=await supabaseClient.from('visit_comments').select('id,visit_event_id,created_by,created_at').in('visit_event_id',eventIds).gte('created_at',since).order('created_at',{ascending:false});
+      if(error) throw error;
+      commentData=data||[];
+    }
+    const creatorIds=[...new Set([...(placeData||[]).map(p=>p.created_by),...(eventData||[]).map(v=>v.created_by),...(commentData||[]).map(c=>c.created_by)].filter(Boolean))];
     if(creatorIds.length){
       const {data:users,error:userError}=await supabaseClient.from('users').select('id,name').in('id',creatorIds);
       if(!userError)(users||[]).forEach(u=>{userNameMap[u.id]=u.name||'이름 미지정';});
     }
-
-    const placeMap={};
-    (placeData||[]).forEach(p=>{placeMap[p.id]=p;});
+    const placeMap={};(placeData||[]).forEach(p=>{placeMap[p.id]=p;});
+    const eventMap={};(eventData||[]).forEach(v=>{eventMap[v.id]=v;});
     const notifications=[
       ...(placeData||[]).map(p=>({
         type:'place',id:p.id,title:'새로운 장소 · '+(p.name||'이름 없는 장소'),
         meta:(userNameMap[p.created_by]||'이름 미지정')+'님이 장소를 등록했습니다 · '+formatNotificationTime(p.created_at),
         createdAt:p.created_at,placeId:p.id
       })),
-      ...eventData.map(v=>{
-        const place=placeMap[v.place_id];
-        return {
-          type:'visit',id:v.id,title:'새로운 방문 기록 · '+(place?.name||'장소'),
-          meta:(userNameMap[v.created_by]||'이름 미지정')+'님이 방문 기록을 남겼습니다 · '+formatNotificationTime(v.created_at),
-          createdAt:v.created_at,placeId:v.place_id
-        };
-      })
-    ].sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
-
+      ...(eventData||[]).map(v=>({
+        type:'visit',id:v.id,title:'새로운 방문 기록 · '+(placeMap[v.place_id]?.name||'장소'),
+        meta:(userNameMap[v.created_by]||'이름 미지정')+'님이 방문 기록을 남겼습니다 · '+formatNotificationTime(v.created_at),
+        createdAt:v.created_at,placeId:v.place_id
+      })),
+      ...(commentData||[]).map(c=>({
+        type:'comment',id:c.id,title:'새로운 방문 댓글 · '+(placeMap[eventMap[c.visit_event_id]?.place_id]?.name||'장소'),
+        meta:(userNameMap[c.created_by]||'이름 미지정')+'님이 방문 기록에 댓글을 남겼습니다 · '+formatNotificationTime(c.created_at),
+        createdAt:c.created_at,placeId:eventMap[c.visit_event_id]?.place_id||null
+      }))
+    ].filter(n=>n.placeId).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
     if(!notifications.length){
       host.innerHTML='<div class="c-notification-empty">최근 7일 동안 새로운 알림이 없습니다.</div>';
       return;
     }
-    host.innerHTML='<div class="c-notification-list">'+notifications.map(n=>`
-      <button type="button" class="c-notification-item" data-notification-place="${escapeHtml(String(n.placeId))}">
-        <div class="c-notification-title">${escapeHtml(n.title)}</div>
-        <div class="c-notification-meta">${escapeHtml(n.meta)}</div>
-      </button>
-    `).join('')+'</div>';
-    host.querySelectorAll('.c-notification-item').forEach(item=>{
-      item.addEventListener('click',()=>{
-        const placeId=item.dataset.notificationPlace;
-        if(typeof window.closeCPanel==='function') window.closeCPanel();
-        if(placeId && typeof openDetail==='function') openDetail(placeId);
-      });
+    host.innerHTML='<div class="c-notification-list">'+notifications.map(n=>`<button type="button" class="c-notification-item" data-place-id="${escapeHtml(n.placeId)}"><strong>${escapeHtml(n.title)}</strong><span>${escapeHtml(n.meta)}</span></button>`).join('')+'</div>';
+    host.querySelectorAll('.c-notification-item').forEach(btn=>{
+      btn.addEventListener('click',()=>{const id=btn.dataset.placeId;if(id)openDetail(id);});
     });
   }catch(e){
-    console.error('Notification load error:',e);
+    console.error('알림 조회 실패:',e);
     host.innerHTML='<div class="c-notification-empty">알림을 불러오지 못했습니다.</div>';
   }
 }
@@ -6065,6 +5888,7 @@ updateCategoryChipIcons();
         <div id="cCalendar">
           <div class="c-cal-head">
             <button id="cCalPrev" type="button" aria-label="이전 달">‹</button>
+            <button id="cCalToday" class="c-cal-today" type="button">오늘</button>
             <strong id="cCalTitle"></strong>
             <button id="cCalNext" type="button" aria-label="다음 달">›</button>
           </div>
@@ -6091,6 +5915,7 @@ updateCategoryChipIcons();
       panel.setAttribute('aria-hidden',open?'false':'true');
       toggle.textContent=open?'›':'‹';
       toggle.setAttribute('aria-label',open?'공유 패널 닫기':'공유 패널 열기');
+      toggle.style.zIndex='9501';
       if(open && typeof loadNotifications==='function') loadNotifications();
       if(open && typeof loadSharedMemo==='function') loadSharedMemo();
       if(open && typeof window.loadCSharedCalendar==='function') window.loadCSharedCalendar();
@@ -6421,6 +6246,13 @@ updateCategoryChipIcons();
         state.month=0;
         state.year++;
       }
+      await load();
+    });
+
+    document.getElementById('cCalToday')?.addEventListener('click',async()=>{
+      const now=new Date();
+      state.year=now.getFullYear();
+      state.month=now.getMonth();
       await load();
     });
 
